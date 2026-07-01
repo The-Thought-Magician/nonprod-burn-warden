@@ -205,10 +205,13 @@ router.get('/summary', async (c) => {
   const byService: Record<string, number> = {}
   const byRegion: Record<string, number> = {}
 
+  const hasAttributionKeys = (bd: Record<string, unknown>) =>
+    Object.keys(bd).some((k) => k.startsWith('provider:') || k.startsWith('service:') || k.startsWith('region:'))
+
   const envIdsNeedingFallback = [
     ...new Set(
       entries
-        .filter((e) => Object.keys((e.breakdown ?? {}) as Record<string, number>).length === 0 && e.environment_id)
+        .filter((e) => !hasAttributionKeys((e.breakdown ?? {}) as Record<string, unknown>) && e.environment_id)
         .map((e) => e.environment_id as string),
     ),
   ]
@@ -227,7 +230,7 @@ router.get('/summary', async (c) => {
 
   for (const e of entries) {
     const bd = (e.breakdown ?? {}) as Record<string, number>
-    if (Object.keys(bd).length > 0) {
+    if (hasAttributionKeys(bd)) {
       for (const [k, v] of Object.entries(bd)) {
         if (k.startsWith('provider:')) byProvider[k.slice(9)] = (byProvider[k.slice(9)] ?? 0) + v
         else if (k.startsWith('service:')) byService[k.slice(8)] = (byService[k.slice(8)] ?? 0) + v
