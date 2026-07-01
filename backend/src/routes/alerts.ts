@@ -203,7 +203,20 @@ router.post('/evaluate', authMiddleware, zValidator('json', evaluateSchema), asy
 
   for (const rule of activeRules) {
     if (rule.rule_type === 'waste_threshold') {
-      // Per-environment waste vs threshold.
+      // Workspace-wide monthly waste vs threshold (matches the "Monthly waste"
+      // figure shown on the Waste Ledger page).
+      const totalWaste = ledgerEntries.reduce((sum, e) => sum + e.wasted_cents, 0)
+      if (totalWaste > rule.threshold_cents) {
+        pushAlert({
+          workspace_id,
+          alert_rule_id: rule.id,
+          severity: rule.severity,
+          message: `Monthly waste ${(totalWaste / 100).toFixed(2)} exceeds threshold ${(rule.threshold_cents / 100).toFixed(2)}`,
+          link: `/dashboard/ledger`,
+        })
+      }
+
+      // Also flag any single environment whose own waste exceeds the threshold.
       const wasteByEnv = new Map<string, number>()
       for (const e of ledgerEntries) {
         if (!e.environment_id) continue
