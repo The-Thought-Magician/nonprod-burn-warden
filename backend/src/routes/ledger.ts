@@ -9,7 +9,7 @@ import {
   environments,
   workspace_members,
 } from '../db/schema.js'
-import { eq, and, desc } from 'drizzle-orm'
+import { eq, and, desc, inArray } from 'drizzle-orm'
 import { authMiddleware, getUserId } from '../lib/auth.js'
 
 const router = new Hono()
@@ -198,16 +198,50 @@ router.get('/summary', async (c) => {
     if (created >= cutoff) trailing30Cents += e.wasted_cents
   }
 
-  // Group by provider/service/region from breakdown jsonb.
+  // Group by provider/service/region from breakdown jsonb, falling back to a
+  // proportional split across the environment's resources when an entry was
+  // written (e.g. by the sample seeder) without a breakdown map.
   const byProvider: Record<string, number> = {}
   const byService: Record<string, number> = {}
   const byRegion: Record<string, number> = {}
+
+  const envIdsNeedingFallback = [
+    ...new Set(
+      entries
+        .filter((e) => Object.keys((e.breakdown ?? {}) as Record<string, number>).length === 0 && e.environment_id)
+        .map((e) => e.environment_id as string),
+    ),
+  ]
+  const fallbackResourcesByEnv = new Map<string, Array<{ provider: string | null; service: string | null; region: string | null }>>()
+  if (envIdsNeedingFallback.length > 0) {
+    const rows = await db
+      .select()
+      .from(resources)
+      .where(and(eq(resources.workspace_id, workspaceId), inArray(resources.environment_id, envIdsNeedingFallback)))
+    for (const r of rows) {
+      const list = fallbackResourcesByEnv.get(r.environment_id as string) ?? []
+      list.push({ provider: r.provider, service: r.service, region: r.region })
+      fallbackResourcesByEnv.set(r.environment_id as string, list)
+    }
+  }
+
   for (const e of entries) {
     const bd = (e.breakdown ?? {}) as Record<string, number>
-    for (const [k, v] of Object.entries(bd)) {
-      if (k.startsWith('provider:')) byProvider[k.slice(9)] = (byProvider[k.slice(9)] ?? 0) + v
-      else if (k.startsWith('service:')) byService[k.slice(8)] = (byService[k.slice(8)] ?? 0) + v
-      else if (k.startsWith('region:')) byRegion[k.slice(7)] = (byRegion[k.slice(7)] ?? 0) + v
+    if (Object.keys(bd).length > 0) {
+      for (const [k, v] of Object.entries(bd)) {
+        if (k.startsWith('provider:')) byProvider[k.slice(9)] = (byProvider[k.slice(9)] ?? 0) + v
+        else if (k.startsWith('service:')) byService[k.slice(8)] = (byService[k.slice(8)] ?? 0) + v
+        else if (k.startsWith('region:')) byRegion[k.slice(7)] = (byRegion[k.slice(7)] ?? 0) + v
+      }
+      continue
+    }
+    const envResources = e.environment_id ? fallbackResourcesByEnv.get(e.environment_id) ?? [] : []
+    if (envResources.length === 0) continue
+    const share = e.wasted_cents / envResources.length
+    for (const r of envResources) {
+      if (r.provider) byProvider[r.provider] = (byProvider[r.provider] ?? 0) + share
+      if (r.service) byService[r.service] = (byService[r.service] ?? 0) + share
+      if (r.region) byRegion[r.region] = (byRegion[r.region] ?? 0) + share
     }
   }
 

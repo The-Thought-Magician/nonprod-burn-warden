@@ -212,7 +212,10 @@ router.get('/summary', async (c) => {
 
   // Aggregate idle hours per environment, and track the observation span so we
   // can normalize to a per-week figure.
-  const agg = new Map<string, { total: number; offHours: number; minT: number; maxT: number }>()
+  const agg = new Map<
+    string,
+    { total: number; offHours: number; minT: number; maxT: number; resourceIds: Set<string> }
+  >()
   for (const w of windows) {
     if (!w.environment_id) continue
     const a = agg.get(w.environment_id) ?? {
@@ -220,9 +223,11 @@ router.get('/summary', async (c) => {
       offHours: 0,
       minT: Number.POSITIVE_INFINITY,
       maxT: Number.NEGATIVE_INFINITY,
+      resourceIds: new Set<string>(),
     }
     a.total += w.duration_hours
     if (w.is_off_hours) a.offHours += w.duration_hours
+    if (w.resource_id) a.resourceIds.add(w.resource_id)
     const startT = w.start_at instanceof Date ? w.start_at.getTime() : Date.parse(String(w.start_at))
     const endT = w.end_at instanceof Date ? w.end_at.getTime() : Date.parse(String(w.end_at))
     if (Number.isFinite(startT)) a.minT = Math.min(a.minT, startT)
@@ -242,10 +247,11 @@ router.get('/summary', async (c) => {
     }
     const spanMs = a.maxT > a.minT ? a.maxT - a.minT : HOUR_MS
     const spanWeeks = Math.max(spanMs / (7 * 24 * HOUR_MS), 1 / 7)
+    const resourceCount = Math.max(a.resourceIds.size, 1)
     return {
       environment_id: env.id,
       name: env.name,
-      idle_hours_per_week: a.total / spanWeeks,
+      idle_hours_per_week: a.total / spanWeeks / resourceCount,
       off_hours_pct: a.total > 0 ? (a.offHours / a.total) * 100 : 0,
     }
   })
