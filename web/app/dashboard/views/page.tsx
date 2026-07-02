@@ -286,8 +286,8 @@ export default function ViewsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Saved Views</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Saved Views</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Save filter presets for lists like resources, idle analysis and the waste ledger. Mark one default per
             target.
           </p>
@@ -319,17 +319,17 @@ export default function ViewsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center gap-3">
-          <h3 className="mr-auto text-sm font-semibold text-zinc-200">All views</h3>
+          <h3 className="mr-auto text-sm font-semibold text-slate-200">All views</h3>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search views…"
-            className="w-48 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
           />
           <select
             value={targetFilter}
             onChange={(e) => setTargetFilter(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
           >
             <option value="">All targets</option>
             {TARGETS.map((t) => (
@@ -370,11 +370,11 @@ export default function ViewsPage() {
                     <TR key={v.id}>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-zinc-100">{v.name}</span>
+                          <span className="font-medium text-slate-100">{v.name}</span>
                           {v.is_default && <Badge tone="success">default</Badge>}
                         </div>
                         {v.created_at && (
-                          <div className="text-xs text-zinc-600">
+                          <div className="text-xs text-slate-600">
                             since {new Date(v.created_at).toLocaleDateString()}
                           </div>
                         )}
@@ -384,19 +384,19 @@ export default function ViewsPage() {
                       </TD>
                       <TD>
                         {filterKeys.length === 0 ? (
-                          <span className="text-zinc-600">no filters</span>
+                          <span className="text-slate-600">no filters</span>
                         ) : (
                           <div className="flex flex-wrap gap-1">
                             {filterKeys.slice(0, 4).map((k) => (
                               <span
                                 key={k}
-                                className="rounded border border-zinc-700 bg-zinc-950 px-1.5 py-0.5 font-mono text-xs text-zinc-400"
+                                className="rounded border border-slate-700 bg-slate-950 px-1.5 py-0.5 font-mono text-xs text-slate-400"
                               >
                                 {k}={String((v.filters as Record<string, unknown>)[k])}
                               </span>
                             ))}
                             {filterKeys.length > 4 && (
-                              <span className="text-xs text-zinc-600">+{filterKeys.length - 4}</span>
+                              <span className="text-xs text-slate-600">+{filterKeys.length - 4}</span>
                             )}
                           </div>
                         )}
@@ -459,21 +459,21 @@ export default function ViewsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">View name</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">View name</span>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Idle dev resources"
               autoFocus
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Target list</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Target list</span>
             <select
               value={form.target}
               onChange={(e) => setForm((f) => ({ ...f, target: e.target.value }))}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               {TARGETS.map((t) => (
                 <option key={t.value} value={t.value}>
@@ -483,16 +483,16 @@ export default function ViewsPage() {
             </select>
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Filters (JSON)</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Filters (JSON)</span>
             <textarea
               value={form.filters}
               onChange={(e) => setForm((f) => ({ ...f, filters: e.target.value }))}
               rows={5}
               spellCheck={false}
               placeholder='{"env_kind":"dev","status":"open"}'
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-xs text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
-            <span className="text-xs text-zinc-600">
+            <span className="text-xs text-slate-600">
               Stored as JSON and re-applied when the view is opened on its target page.
             </span>
           </label>
@@ -501,9 +501,9 @@ export default function ViewsPage() {
               type="checkbox"
               checked={form.is_default}
               onChange={(e) => setForm((f) => ({ ...f, is_default: e.target.checked }))}
-              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-yellow-400"
+              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-400"
             />
-            <span className="text-sm text-zinc-300">Make this the default view for its target</span>
+            <span className="text-sm text-slate-300">Make this the default view for its target</span>
           </label>
         </div>
       </Modal>

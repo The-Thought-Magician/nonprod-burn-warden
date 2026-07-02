@@ -250,8 +250,8 @@ export default function OrphansPage() {
                 onClick={() => setStatusFilter(s)}
                 className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
                   statusFilter === s
-                    ? 'border-yellow-500/50 bg-yellow-400/10 text-yellow-300'
-                    : 'border-zinc-700 bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
+                    ? 'border-emerald-500/50 bg-emerald-400/10 text-emerald-300'
+                    : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                 }`}
               >
                 {s}
@@ -262,7 +262,7 @@ export default function OrphansPage() {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
             >
               <option value="all">All types</option>
               {types.map((t) => (
@@ -275,7 +275,7 @@ export default function OrphansPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search findings…"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
             />
           </div>
         </CardHeader>
@@ -317,17 +317,17 @@ export default function OrphansPage() {
                   const status = (f.status || 'open').toLowerCase() as Status
                   return (
                     <TR key={f.id}>
-                      <TD className="text-zinc-100">
+                      <TD className="text-slate-100">
                         <div className="font-medium">{f.resource?.name || f.resource_id?.slice(0, 8) || '—'}</div>
                         {f.resource?.provider && (
-                          <div className="text-xs text-zinc-500">
+                          <div className="text-xs text-slate-500">
                             {f.resource.provider}
                             {f.resource.region ? ` · ${f.resource.region}` : ''}
                           </div>
                         )}
                       </TD>
                       <TD>{titleCase(f.finding_type)}</TD>
-                      <TD className="max-w-xs text-zinc-400">{f.reason || '—'}</TD>
+                      <TD className="max-w-xs text-slate-400">{f.reason || '—'}</TD>
                       <TD>
                         <Badge tone={sevTone(f.severity)}>{titleCase(f.severity) || 'Unknown'}</Badge>
                       </TD>
@@ -405,8 +405,8 @@ function Header({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">Orphaned Resources</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-bold text-slate-100">Orphaned Resources</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Forgotten sandboxes, stale previews, and zero-usage resources quietly burning budget.
         </p>
       </div>

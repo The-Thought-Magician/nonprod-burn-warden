@@ -217,8 +217,8 @@ export default function ShowbackPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Showback</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Showback</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Attribute cloud spend and idle waste back to each team for a given period, with an unallocated bucket
             for spend not yet owned.
           </p>
@@ -227,7 +227,7 @@ export default function ShowbackPage() {
           <select
             value={period}
             onChange={(e) => onPeriodChange(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
           >
             {periods.map((p) => (
               <option key={p} value={p}>
@@ -265,14 +265,14 @@ export default function ShowbackPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 className="text-sm font-semibold text-zinc-200">Statement — {statement?.period || period}</h3>
-            <p className="mt-0.5 text-xs text-zinc-500">Per-team allocated spend and attributed waste.</p>
+            <h3 className="text-sm font-semibold text-slate-200">Statement — {statement?.period || period}</h3>
+            <p className="mt-0.5 text-xs text-slate-500">Per-team allocated spend and attributed waste.</p>
           </div>
           <input
             value={teamFilter}
             onChange={(e) => setTeamFilter(e.target.value)}
             placeholder="Search teams…"
-            className="w-48 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
           />
         </CardHeader>
         <CardBody className="p-0">
@@ -316,26 +316,26 @@ export default function ShowbackPage() {
                         {isUnallocated ? (
                           <Badge tone="danger">Unallocated</Badge>
                         ) : (
-                          <span className="font-medium text-zinc-100">{t.team_name || t.team_id}</span>
+                          <span className="font-medium text-slate-100">{t.team_name || t.team_id}</span>
                         )}
                       </TD>
                       <TD>
                         <div className="mb-1 flex items-center justify-between text-xs">
-                          <span className="tabular-nums font-medium text-zinc-200">{dollars(allocated)}</span>
+                          <span className="tabular-nums font-medium text-slate-200">{dollars(allocated)}</span>
                           {totals.allocated > 0 && (
-                            <span className="tabular-nums text-zinc-500">
+                            <span className="tabular-nums text-slate-500">
                               {Math.round((allocated / totals.allocated) * 100)}%
                             </span>
                           )}
                         </div>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                           <div
-                            className="h-full rounded-full bg-yellow-400"
+                            className="h-full rounded-full bg-emerald-400"
                             style={{ width: `${Math.max(2, (allocated / maxAllocated) * 100)}%` }}
                           />
                         </div>
                       </TD>
-                      <TD className="text-right tabular-nums text-yellow-300">{dollars(wasted)}</TD>
+                      <TD className="text-right tabular-nums text-emerald-300">{dollars(wasted)}</TD>
                       <TD className="text-right tabular-nums">
                         <Badge tone={wastePct >= 30 ? 'danger' : wastePct >= 15 ? 'warning' : 'default'}>
                           {wastePct.toFixed(0)}%
@@ -350,10 +350,10 @@ export default function ShowbackPage() {
                       <Badge tone="danger">Unallocated</Badge>
                     </TD>
                     <TD>
-                      <span className="tabular-nums text-zinc-400">{dollars(totals.unallocated)}</span>
+                      <span className="tabular-nums text-slate-400">{dollars(totals.unallocated)}</span>
                     </TD>
-                    <TD className="text-right text-zinc-600">—</TD>
-                    <TD className="text-right text-zinc-600">—</TD>
+                    <TD className="text-right text-slate-600">—</TD>
+                    <TD className="text-right text-slate-600">—</TD>
                   </TR>
                 )}
               </TBody>
@@ -364,13 +364,13 @@ export default function ShowbackPage() {
 
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Allocation detail</h3>
-          <p className="mt-0.5 text-xs text-zinc-500">Raw allocation rows per team and environment for this period.</p>
+          <h3 className="text-sm font-semibold text-slate-200">Allocation detail</h3>
+          <p className="mt-0.5 text-xs text-slate-500">Raw allocation rows per team and environment for this period.</p>
         </CardHeader>
         <CardBody className="p-0">
           {allocations.length === 0 ? (
             <div className="p-5">
-              <p className="text-sm text-zinc-500">No allocation rows for this period.</p>
+              <p className="text-sm text-slate-500">No allocation rows for this period.</p>
             </div>
           ) : (
             <Table>
@@ -390,23 +390,23 @@ export default function ShowbackPage() {
                     <TR key={a.id}>
                       <TD>
                         {a.team_id ? (
-                          <span className="text-zinc-200">{a.team_name || a.team_id}</span>
+                          <span className="text-slate-200">{a.team_name || a.team_id}</span>
                         ) : (
-                          <span className="text-zinc-600">unallocated</span>
+                          <span className="text-slate-600">unallocated</span>
                         )}
                       </TD>
                       <TD>
                         {a.environment_id ? (
                           <Badge tone="info">{a.environment_id}</Badge>
                         ) : (
-                          <span className="text-zinc-600">—</span>
+                          <span className="text-slate-600">—</span>
                         )}
                       </TD>
                       <TD>
-                        <span className="text-zinc-400">{a.period}</span>
+                        <span className="text-slate-400">{a.period}</span>
                       </TD>
                       <TD className="text-right tabular-nums">{dollars(a.allocated_cents)}</TD>
-                      <TD className="text-right tabular-nums text-yellow-300">{dollars(a.wasted_cents)}</TD>
+                      <TD className="text-right tabular-nums text-emerald-300">{dollars(a.wasted_cents)}</TD>
                     </TR>
                   ))}
               </TBody>

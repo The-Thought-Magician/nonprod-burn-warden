@@ -328,7 +328,7 @@ export default function HolidaysPage() {
         {/* Calendars list */}
         <Card className="h-fit">
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">Calendars</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Calendars</h2>
             <Button variant="secondary" className="px-2.5 py-1 text-xs" onClick={() => setCalModalOpen(true)}>
               + New
             </Button>
@@ -343,24 +343,24 @@ export default function HolidaysPage() {
                 />
               </div>
             ) : (
-              <ul className="divide-y divide-zinc-800">
+              <ul className="divide-y divide-slate-800">
                 {calendars.map((c) => (
                   <li key={c.id}>
                     <button
                       onClick={() => selectCalendar(c.id)}
                       className={`flex w-full items-center justify-between gap-2 px-5 py-3 text-left transition-colors ${
-                        selectedId === c.id ? 'bg-yellow-400/5' : 'hover:bg-zinc-900/60'
+                        selectedId === c.id ? 'bg-emerald-400/5' : 'hover:bg-slate-900/60'
                       }`}
                     >
                       <div className="min-w-0">
                         <div
                           className={`truncate text-sm font-medium ${
-                            selectedId === c.id ? 'text-yellow-300' : 'text-zinc-100'
+                            selectedId === c.id ? 'text-emerald-300' : 'text-slate-100'
                           }`}
                         >
                           {c.name || 'Untitled'}
                         </div>
-                        <div className="mt-0.5 flex items-center gap-2 text-xs text-zinc-500">
+                        <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-500">
                           {c.region && <Badge tone="info">{c.region}</Badge>}
                           <span>{c.holiday_count ?? 0} holiday(s)</span>
                         </div>
@@ -378,7 +378,7 @@ export default function HolidaysPage() {
                             deleteCalendar(c)
                           }
                         }}
-                        className={`shrink-0 rounded-md px-2 py-1 text-xs text-zinc-500 transition-colors hover:bg-red-500/10 hover:text-red-300 ${
+                        className={`shrink-0 rounded-md px-2 py-1 text-xs text-slate-500 transition-colors hover:bg-red-500/10 hover:text-red-300 ${
                           busyId === c.id ? 'opacity-50' : ''
                         }`}
                       >
@@ -396,11 +396,11 @@ export default function HolidaysPage() {
         <Card>
           <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0">
-              <h2 className="truncate text-sm font-semibold text-zinc-200">
+              <h2 className="truncate text-sm font-semibold text-slate-200">
                 {selectedCalendar ? `${selectedCalendar.name} — Holidays` : 'Holidays'}
               </h2>
               {selectedCalendar?.region && (
-                <p className="mt-0.5 text-xs text-zinc-500">Region: {selectedCalendar.region}</p>
+                <p className="mt-0.5 text-xs text-slate-500">Region: {selectedCalendar.region}</p>
               )}
             </div>
             {selectedCalendar && (
@@ -408,7 +408,7 @@ export default function HolidaysPage() {
                 <select
                   value={yearFilter}
                   onChange={(e) => setYearFilter(e.target.value as 'all' | string)}
-                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
                 >
                   <option value="all">All years</option>
                   {years.map((y) => (
@@ -421,7 +421,7 @@ export default function HolidaysPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search holidays…"
-                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none"
+                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
                 />
                 <Button variant="secondary" disabled={seeding} onClick={seedStandard}>
                   {seeding ? 'Seeding…' : 'Seed Standard'}
@@ -474,9 +474,9 @@ export default function HolidaysPage() {
                 <TBody>
                   {filtered.map((h) => (
                     <TR key={h.id}>
-                      <TD className="font-medium text-zinc-100">{h.name || '—'}</TD>
+                      <TD className="font-medium text-slate-100">{h.name || '—'}</TD>
                       <TD className="tabular-nums">{fmtDate(h.date)}</TD>
-                      <TD className="text-zinc-400">{weekday(h.date)}</TD>
+                      <TD className="text-slate-400">{weekday(h.date)}</TD>
                       <TD>
                         {h.is_full_day === false ? (
                           <Badge tone="default">Partial</Badge>
@@ -525,14 +525,14 @@ export default function HolidaysPage() {
               value={calName}
               onChange={(e) => setCalName(e.target.value)}
               placeholder="e.g. US Federal Holidays"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
             />
           </Field>
           <Field label="Region">
             <select
               value={calRegion}
               onChange={(e) => setCalRegion(e.target.value)}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
             >
               {REGIONS.map((r) => (
                 <option key={r} value={r}>
@@ -540,7 +540,7 @@ export default function HolidaysPage() {
                 </option>
               ))}
             </select>
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-slate-500">
               Determines the standard holiday set available via Seed Standard.
             </p>
           </Field>
@@ -569,7 +569,7 @@ export default function HolidaysPage() {
               value={holName}
               onChange={(e) => setHolName(e.target.value)}
               placeholder="e.g. New Year's Day"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
             />
           </Field>
           <Field label="Date">
@@ -577,15 +577,15 @@ export default function HolidaysPage() {
               type="date"
               value={holDate}
               onChange={(e) => setHolDate(e.target.value)}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
             />
           </Field>
-          <label className="flex items-center gap-2 text-sm text-zinc-300">
+          <label className="flex items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={holFullDay}
               onChange={(e) => setHolFullDay(e.target.checked)}
-              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-yellow-400"
+              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-400"
             />
             Full-day holiday (treated as off-hours all day)
           </label>
@@ -598,7 +598,7 @@ export default function HolidaysPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</label>
+      <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</label>
       {children}
     </div>
   )
@@ -608,8 +608,8 @@ function Header({ onNew, disabled }: { onNew: () => void; disabled?: boolean }) 
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">Holiday Calendars</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-bold text-slate-100">Holiday Calendars</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Calendars feed off-hours waste detection, so idle resources on public holidays count against recoverable
           spend.
         </p>

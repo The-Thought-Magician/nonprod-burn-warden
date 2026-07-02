@@ -268,16 +268,16 @@ export default function ScheduleDetailPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <Link href="/dashboard/schedules" className="text-xs text-zinc-500 hover:text-zinc-300">
+        <Link href="/dashboard/schedules" className="text-xs text-slate-500 hover:text-slate-300">
           ← Schedules
         </Link>
         <div className="mt-2 flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h1 className="flex items-center gap-2 text-2xl font-bold text-zinc-100">
+            <h1 className="flex items-center gap-2 text-2xl font-bold text-slate-100">
               {schedule.name}
               {isPreset ? <Badge tone="info">Preset</Badge> : <Badge>Custom</Badge>}
             </h1>
-            <p className="mt-1 text-sm text-zinc-500">Edit on/off windows and assign environments.</p>
+            <p className="mt-1 text-sm text-slate-500">Edit on/off windows and assign environments.</p>
           </div>
           <Button onClick={onSave} disabled={saving || !dirty}>
             {saving ? 'Saving…' : dirty ? 'Save changes' : 'Saved'}
@@ -302,34 +302,34 @@ export default function ScheduleDetailPage() {
 
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Details</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Details</h3>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium text-zinc-400">Name</span>
+              <span className="text-xs font-medium text-slate-400">Name</span>
               <input
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value)
                   setDirty(true)
                 }}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium text-zinc-400">Description</span>
+              <span className="text-xs font-medium text-slate-400">Description</span>
               <input
                 value={description}
                 onChange={(e) => {
                   setDescription(e.target.value)
                   setDirty(true)
                 }}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               />
             </label>
           </div>
-          <label className="flex items-center gap-2 text-sm text-zinc-300">
+          <label className="flex items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={treatHolidaysOff}
@@ -337,7 +337,7 @@ export default function ScheduleDetailPage() {
                 setTreatHolidaysOff(e.target.checked)
                 setDirty(true)
               }}
-              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-yellow-400"
+              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-400"
             />
             Treat holidays as off-hours
           </label>
@@ -346,7 +346,7 @@ export default function ScheduleDetailPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold text-zinc-200">On/off window editor</h3>
+          <h3 className="text-sm font-semibold text-slate-200">On/off window editor</h3>
           <div className="flex flex-wrap gap-2">
             <Button variant="ghost" onClick={() => applyRange([1, 2, 3, 4, 5], 9, 18)}>
               9–6 weekdays
@@ -366,7 +366,7 @@ export default function ScheduleDetailPage() {
           </div>
         </CardHeader>
         <CardBody>
-          <p className="mb-3 text-xs text-zinc-500">
+          <p className="mb-3 text-xs text-slate-500">
             Click cells to toggle an hour on (yellow = running). Use the row label to toggle a whole day. Hours run
             00:00 → 23:00.
           </p>
@@ -376,7 +376,7 @@ export default function ScheduleDetailPage() {
                 <div className="w-16 shrink-0" />
                 <div className="flex flex-1">
                   {Array.from({ length: 24 }, (_, h) => (
-                    <div key={h} className="flex-1 text-center text-[9px] text-zinc-600">
+                    <div key={h} className="flex-1 text-center text-[9px] text-slate-600">
                       {h % 3 === 0 ? h : ''}
                     </div>
                   ))}
@@ -388,7 +388,7 @@ export default function ScheduleDetailPage() {
                   <div key={day} className="mb-0.5 flex items-center">
                     <button
                       onClick={() => setDay(day, !allOn)}
-                      className="w-16 shrink-0 text-left text-xs font-medium text-zinc-400 hover:text-yellow-300"
+                      className="w-16 shrink-0 text-left text-xs font-medium text-slate-400 hover:text-emerald-300"
                       title={`Toggle all of ${DAYS[day]}`}
                     >
                       {DAY_SHORT[day]}
@@ -400,7 +400,7 @@ export default function ScheduleDetailPage() {
                           onClick={() => toggleCell(day, h)}
                           title={`${DAYS[day]} ${h}:00`}
                           className={`h-6 flex-1 rounded-sm transition-colors ${
-                            on ? 'bg-yellow-400 hover:bg-yellow-300' : 'bg-zinc-800 hover:bg-zinc-700'
+                            on ? 'bg-emerald-400 hover:bg-emerald-300' : 'bg-slate-800 hover:bg-slate-700'
                           }`}
                         />
                       ))}
@@ -410,12 +410,12 @@ export default function ScheduleDetailPage() {
               })}
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-4 text-xs text-zinc-500">
+          <div className="mt-4 flex items-center gap-4 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">
-              <span className="inline-block h-3 w-3 rounded-sm bg-yellow-400" /> Running
+              <span className="inline-block h-3 w-3 rounded-sm bg-emerald-400" /> Running
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="inline-block h-3 w-3 rounded-sm bg-zinc-800" /> Off (recoverable)
+              <span className="inline-block h-3 w-3 rounded-sm bg-slate-800" /> Off (recoverable)
             </span>
           </div>
         </CardBody>
@@ -423,16 +423,16 @@ export default function ScheduleDetailPage() {
 
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Assignments</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Assignments</h3>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
           <div className="flex flex-wrap items-end gap-3">
             <label className="flex flex-1 flex-col gap-1 sm:max-w-xs">
-              <span className="text-xs font-medium text-zinc-400">Assign an environment</span>
+              <span className="text-xs font-medium text-slate-400">Assign an environment</span>
               <select
                 value={assignEnvId}
                 onChange={(e) => setAssignEnvId(e.target.value)}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">Select environment…</option>
                 {availableEnvs.map((e) => (
@@ -449,12 +449,12 @@ export default function ScheduleDetailPage() {
           </div>
 
           {availableEnvs.length === 0 && environments.length > 0 && (
-            <p className="text-xs text-zinc-600">All environments are already assigned to this schedule.</p>
+            <p className="text-xs text-slate-600">All environments are already assigned to this schedule.</p>
           )}
           {environments.length === 0 && (
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-slate-600">
               No environments yet.{' '}
-              <Link href="/dashboard/environments" className="text-yellow-300 hover:underline">
+              <Link href="/dashboard/environments" className="text-emerald-300 hover:underline">
                 Create one
               </Link>{' '}
               to assign a schedule.
@@ -486,12 +486,12 @@ export default function ScheduleDetailPage() {
                         {a.environment_id ? (
                           <Link
                             href={`/dashboard/environments/${a.environment_id}`}
-                            className="font-medium text-zinc-200 hover:text-yellow-300"
+                            className="font-medium text-slate-200 hover:text-emerald-300"
                           >
                             {label}
                           </Link>
                         ) : (
-                          <span className="font-medium text-zinc-200">{label}</span>
+                          <span className="font-medium text-slate-200">{label}</span>
                         )}
                       </TD>
                       <TD>

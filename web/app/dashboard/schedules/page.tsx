@@ -78,12 +78,12 @@ function WeekStrip({ windows }: { windows?: Window[] | null }) {
         const dayWindows = byDay.get(day) ?? []
         return (
           <div key={day} className="flex flex-1 flex-col items-center gap-1">
-            <span className="text-[10px] uppercase text-zinc-600">{label}</span>
-            <div className="relative h-10 w-full overflow-hidden rounded bg-zinc-800">
+            <span className="text-[10px] uppercase text-slate-600">{label}</span>
+            <div className="relative h-10 w-full overflow-hidden rounded bg-slate-800">
               {dayWindows.map((w, i) => (
                 <div
                   key={i}
-                  className="absolute inset-y-0 bg-yellow-400/70"
+                  className="absolute inset-y-0 bg-emerald-400/70"
                   style={{
                     left: `${(Math.max(0, w.start) / 24) * 100}%`,
                     width: `${(Math.max(0, Math.min(24, w.end) - Math.max(0, w.start)) / 24) * 100}%`,
@@ -265,8 +265,8 @@ export default function SchedulesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Schedules</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Schedules</h1>
+          <p className="mt-1 text-sm text-slate-500">
             On/off windows for non-production environments. Anything outside a window is recoverable idle time.
           </p>
         </div>
@@ -289,13 +289,13 @@ export default function SchedulesPage() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex gap-1 rounded-lg border border-zinc-800 bg-zinc-900 p-1">
+        <div className="flex gap-1 rounded-lg border border-slate-800 bg-slate-900 p-1">
           {(['all', 'preset', 'custom'] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`rounded-md px-3 py-1.5 text-sm capitalize transition-colors ${
-                filter === f ? 'bg-yellow-400/10 font-medium text-yellow-300' : 'text-zinc-400 hover:text-zinc-200'
+                filter === f ? 'bg-emerald-400/10 font-medium text-emerald-300' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               {f}
@@ -306,7 +306,7 @@ export default function SchedulesPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search schedules…"
-          className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+          className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
         />
       </div>
 
@@ -335,13 +335,13 @@ export default function SchedulesPage() {
                     <div className="flex items-center gap-2">
                       <Link
                         href={`/dashboard/schedules/${s.id}`}
-                        className="truncate text-sm font-semibold text-zinc-100 hover:text-yellow-300"
+                        className="truncate text-sm font-semibold text-slate-100 hover:text-emerald-300"
                       >
                         {s.name}
                       </Link>
                       {s.is_preset ? <Badge tone="info">Preset</Badge> : <Badge>Custom</Badge>}
                     </div>
-                    {s.description && <p className="mt-1 truncate text-xs text-zinc-500">{s.description}</p>}
+                    {s.description && <p className="mt-1 truncate text-xs text-slate-500">{s.description}</p>}
                   </div>
                   <div className="flex shrink-0 items-center gap-1">
                     <Link href={`/dashboard/schedules/${s.id}`}>
@@ -356,12 +356,12 @@ export default function SchedulesPage() {
                 </CardHeader>
                 <CardBody className="flex flex-col gap-4">
                   <WeekStrip windows={s.windows} />
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400">
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                     <span>
-                      <span className="font-semibold tabular-nums text-zinc-200">{hrs.toFixed(0)}</span> on-hours / week
+                      <span className="font-semibold tabular-nums text-slate-200">{hrs.toFixed(0)}</span> on-hours / week
                     </span>
                     <span>
-                      <span className="font-semibold tabular-nums text-yellow-300">{savingsPct}%</span> off vs 24/7
+                      <span className="font-semibold tabular-nums text-emerald-300">{savingsPct}%</span> off vs 24/7
                     </span>
                     {s.treat_holidays_off && <Badge tone="success">Holidays off</Badge>}
                   </div>
@@ -389,21 +389,21 @@ export default function SchedulesPage() {
       >
         <div className="flex flex-col gap-4">
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-zinc-400">Name</span>
+            <span className="text-xs font-medium text-slate-400">Name</span>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Dev business hours"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             />
           </label>
 
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-zinc-400">Template</span>
+            <span className="text-xs font-medium text-slate-400">Template</span>
             <select
               value={form.presetIndex}
               onChange={(e) => setForm((f) => ({ ...f, presetIndex: Number(e.target.value) }))}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               {PRESETS.map((p, i) => (
                 <option key={p.name} value={i}>
@@ -417,54 +417,54 @@ export default function SchedulesPage() {
           {isCustom ? (
             <div className="grid grid-cols-2 gap-3">
               <label className="flex flex-col gap-1">
-                <span className="text-xs font-medium text-zinc-400">Start hour</span>
+                <span className="text-xs font-medium text-slate-400">Start hour</span>
                 <input
                   type="number"
                   min={0}
                   max={23}
                   value={form.startHour}
                   onChange={(e) => setForm((f) => ({ ...f, startHour: Number(e.target.value) }))}
-                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
                 />
               </label>
               <label className="flex flex-col gap-1">
-                <span className="text-xs font-medium text-zinc-400">End hour</span>
+                <span className="text-xs font-medium text-slate-400">End hour</span>
                 <input
                   type="number"
                   min={1}
                   max={24}
                   value={form.endHour}
                   onChange={(e) => setForm((f) => ({ ...f, endHour: Number(e.target.value) }))}
-                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
                 />
               </label>
             </div>
           ) : (
-            <p className="text-xs text-zinc-500">{PRESETS[form.presetIndex].description}</p>
+            <p className="text-xs text-slate-500">{PRESETS[form.presetIndex].description}</p>
           )}
 
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-zinc-400">Description (optional)</span>
+            <span className="text-xs font-medium text-slate-400">Description (optional)</span>
             <input
               value={form.description}
               onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
               placeholder="What this schedule is for"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             />
           </label>
 
-          <label className="flex items-center gap-2 text-sm text-zinc-300">
+          <label className="flex items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={form.treatHolidaysOff}
               onChange={(e) => setForm((f) => ({ ...f, treatHolidaysOff: e.target.checked }))}
-              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-yellow-400"
+              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-400"
             />
             Treat holidays as off-hours
           </label>
 
-          <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3">
-            <div className="mb-2 text-xs font-medium text-zinc-500">Preview</div>
+          <div className="rounded-lg border border-slate-800 bg-slate-950 p-3">
+            <div className="mb-2 text-xs font-medium text-slate-500">Preview</div>
             <WeekStrip windows={isCustom ? workdayWindows(form.startHour, form.endHour) : PRESETS[form.presetIndex].windows} />
           </div>
         </div>
@@ -485,8 +485,8 @@ export default function SchedulesPage() {
           </>
         }
       >
-        <p className="text-sm text-zinc-300">
-          Delete <span className="font-semibold text-zinc-100">{deleteTarget?.name}</span>? Any environment or resource
+        <p className="text-sm text-slate-300">
+          Delete <span className="font-semibold text-slate-100">{deleteTarget?.name}</span>? Any environment or resource
           assignments will be removed. This cannot be undone.
         </p>
       </Modal>

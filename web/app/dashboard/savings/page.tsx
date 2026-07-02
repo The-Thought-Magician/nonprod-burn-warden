@@ -217,23 +217,23 @@ export default function SavingsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-100">Recoverable Potential by Environment</h2>
+            <h2 className="text-sm font-semibold text-slate-100">Recoverable Potential by Environment</h2>
           </CardHeader>
           <CardBody>
             {byEnv.length === 0 ? (
-              <p className="text-sm text-zinc-500">No recoverable potential computed yet. Run the calculator below.</p>
+              <p className="text-sm text-slate-500">No recoverable potential computed yet. Run the calculator below.</p>
             ) : (
               <div className="space-y-3">
                 {[...byEnv]
                   .sort((a, b) => (b.recoverable_cents ?? 0) - (a.recoverable_cents ?? 0))
                   .map((b) => (
                     <div key={b.environment_id} className="flex items-center gap-3">
-                      <div className="w-40 shrink-0 truncate text-sm text-zinc-300">
+                      <div className="w-40 shrink-0 truncate text-sm text-slate-300">
                         {b.name || envName(b.environment_id)}
                       </div>
-                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-yellow-400"
+                          className="h-full rounded-full bg-emerald-400"
                           style={{ width: `${((b.recoverable_cents ?? 0) / maxPotential) * 100}%` }}
                         />
                       </div>
@@ -253,8 +253,8 @@ export default function SavingsPage() {
         {/* What-if calculator */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-100">What-If Savings Calculator</h2>
-            <p className="mt-0.5 text-xs text-zinc-500">
+            <h2 className="text-sm font-semibold text-slate-100">What-If Savings Calculator</h2>
+            <p className="mt-0.5 text-xs text-slate-500">
               Apply a schedule to an environment and persist the estimate.
             </p>
           </CardHeader>
@@ -291,8 +291,8 @@ export default function SavingsPage() {
             </form>
 
             {calcResult && (
-              <div className="mt-5 rounded-lg border border-yellow-500/30 bg-yellow-400/5 p-4">
-                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <div className="mt-5 rounded-lg border border-emerald-500/30 bg-emerald-400/5 p-4">
+                <div className="text-xs font-medium uppercase tracking-wide text-slate-500">
                   {envName(calcResult.environment_id)} · {scheduleName(calcResult.schedule_id)}
                 </div>
                 <div className="mt-3 grid grid-cols-3 gap-3">
@@ -300,22 +300,22 @@ export default function SavingsPage() {
                     <div className="text-lg font-bold tabular-nums text-emerald-300">
                       {money(calcResult.monthly_savings_cents)}
                     </div>
-                    <div className="text-xs text-zinc-500">Monthly savings</div>
+                    <div className="text-xs text-slate-500">Monthly savings</div>
                   </div>
                   <div>
-                    <div className="text-lg font-bold tabular-nums text-yellow-300">
+                    <div className="text-lg font-bold tabular-nums text-emerald-300">
                       {pct(calcResult.savings_pct)}
                     </div>
-                    <div className="text-xs text-zinc-500">of current spend</div>
+                    <div className="text-xs text-slate-500">of current spend</div>
                   </div>
                   <div>
-                    <div className="text-lg font-bold tabular-nums text-zinc-100">
+                    <div className="text-lg font-bold tabular-nums text-slate-100">
                       {Math.round(calcResult.hours_saved_per_week ?? 0)}h
                     </div>
-                    <div className="text-xs text-zinc-500">saved / week</div>
+                    <div className="text-xs text-slate-500">saved / week</div>
                   </div>
                 </div>
-                <div className="mt-3 text-xs text-zinc-500">
+                <div className="mt-3 text-xs text-slate-500">
                   Current spend: {money(calcResult.current_monthly_cents)} / mo
                 </div>
               </div>
@@ -326,8 +326,8 @@ export default function SavingsPage() {
         {/* Comparison */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-100">Compare Schedules</h2>
-            <p className="mt-0.5 text-xs text-zinc-500">Pick an environment and 2+ schedules to compare.</p>
+            <h2 className="text-sm font-semibold text-slate-100">Compare Schedules</h2>
+            <p className="mt-0.5 text-xs text-slate-500">Pick an environment and 2+ schedules to compare.</p>
           </CardHeader>
           <CardBody>
             <form onSubmit={runCompare} className="space-y-4">
@@ -344,7 +344,7 @@ export default function SavingsPage() {
               <Field label="Schedules to compare">
                 <div className="flex flex-wrap gap-2">
                   {schedules.length === 0 && (
-                    <span className="text-sm text-zinc-500">No schedules available.</span>
+                    <span className="text-sm text-slate-500">No schedules available.</span>
                   )}
                   {schedules.map((s) => {
                     const on = cmpScheduleIds.includes(s.id)
@@ -355,8 +355,8 @@ export default function SavingsPage() {
                         onClick={() => toggleCmpSchedule(s.id)}
                         className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
                           on
-                            ? 'border-yellow-500/50 bg-yellow-400/10 text-yellow-300'
-                            : 'border-zinc-700 bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
+                            ? 'border-emerald-500/50 bg-emerald-400/10 text-emerald-300'
+                            : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                         }`}
                       >
                         {s.name}
@@ -378,7 +378,7 @@ export default function SavingsPage() {
                   .map((o) => (
                     <div key={o.schedule_id} className="space-y-1">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="flex items-center gap-2 text-zinc-300">
+                        <span className="flex items-center gap-2 text-slate-300">
                           {scheduleName(o.schedule_id)}
                           {bestCmp && o.schedule_id === bestCmp.schedule_id && (
                             <Badge tone="success">Best</Badge>
@@ -388,9 +388,9 @@ export default function SavingsPage() {
                           {money(o.monthly_savings_cents)} · {pct(o.savings_pct)}
                         </span>
                       </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-yellow-400"
+                          className="h-full rounded-full bg-emerald-400"
                           style={{ width: `${((o.monthly_savings_cents ?? 0) / maxCmp) * 100}%` }}
                         />
                       </div>
@@ -404,7 +404,7 @@ export default function SavingsPage() {
 
       {/* Saved estimates */}
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold text-zinc-100">Saved Savings Estimates</h2>
+        <h2 className="text-sm font-semibold text-slate-100">Saved Savings Estimates</h2>
         {estimates.length === 0 ? (
           <EmptyState
             title="No estimates yet"
@@ -425,13 +425,13 @@ export default function SavingsPage() {
             <TBody>
               {estimates.map((est) => (
                 <TR key={est.id}>
-                  <TD className="text-zinc-100">{envName(est.environment_id)}</TD>
+                  <TD className="text-slate-100">{envName(est.environment_id)}</TD>
                   <TD>{scheduleName(est.schedule_id)}</TD>
                   <TD className="text-right tabular-nums">{money(est.current_monthly_cents)}</TD>
                   <TD className="text-right tabular-nums text-emerald-300">
                     {money(est.monthly_savings_cents)}
                   </TD>
-                  <TD className="text-right tabular-nums text-yellow-300">{pct(est.savings_pct)}</TD>
+                  <TD className="text-right tabular-nums text-emerald-300">{pct(est.savings_pct)}</TD>
                   <TD className="text-right tabular-nums">
                     {Math.round(est.hours_saved_per_week ?? 0)}h
                   </TD>
@@ -448,8 +448,8 @@ export default function SavingsPage() {
 function Header() {
   return (
     <div>
-      <h1 className="text-2xl font-bold text-zinc-100">Savings Calculator</h1>
-      <p className="mt-1 text-sm text-zinc-500">
+      <h1 className="text-2xl font-bold text-slate-100">Savings Calculator</h1>
+      <p className="mt-1 text-sm text-slate-500">
         Model what-if schedules, compare options, and see org-wide recoverable potential.
       </p>
     </div>
@@ -459,7 +459,7 @@ function Header() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
+      <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
       {children}
     </label>
   )
@@ -478,7 +478,7 @@ function Select({
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
     >
       {children}
     </select>

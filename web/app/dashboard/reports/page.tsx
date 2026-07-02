@@ -203,12 +203,12 @@ export default function ReportsPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-sm font-semibold text-zinc-200">All Reports</h2>
+          <h2 className="text-sm font-semibold text-slate-200">All Reports</h2>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by title or period…"
-            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none sm:w-64"
+            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none sm:w-64"
           />
         </CardHeader>
         <CardBody className="p-0">
@@ -245,16 +245,16 @@ export default function ReportsPage() {
               <TBody>
                 {filtered.map((r) => (
                   <TR key={r.id}>
-                    <TD className="text-zinc-100">
-                      <Link href={`/dashboard/reports/${r.id}`} className="font-medium hover:text-yellow-300">
+                    <TD className="text-slate-100">
+                      <Link href={`/dashboard/reports/${r.id}`} className="font-medium hover:text-emerald-300">
                         {r.title || `Recovery Report — ${r.period}`}
                       </Link>
-                      <div className="text-xs text-zinc-500">{fmtDateTime(r.created_at)}</div>
+                      <div className="text-xs text-slate-500">{fmtDateTime(r.created_at)}</div>
                     </TD>
                     <TD className="tabular-nums">{r.period || '—'}</TD>
                     <TD className="text-right tabular-nums">{money(r.total_spend_cents)}</TD>
                     <TD className="text-right tabular-nums text-red-300">{money(r.idle_waste_cents)}</TD>
-                    <TD className="text-right tabular-nums text-yellow-300">{money(r.recoverable_cents)}</TD>
+                    <TD className="text-right tabular-nums text-emerald-300">{money(r.recoverable_cents)}</TD>
                     <TD className="text-right tabular-nums text-emerald-300">{money(r.recovered_cents)}</TD>
                     <TD>
                       {r.share_token ? (
@@ -314,26 +314,26 @@ export default function ReportsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Period</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Period</label>
             <input
               type="month"
               value={genPeriod}
               onChange={(e) => setGenPeriod(e.target.value)}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-slate-500">
               The report aggregates spend, idle waste, and recoverable savings for this period.
             </p>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Title (optional)
             </label>
             <input
               value={genTitle}
               onChange={(e) => setGenTitle(e.target.value)}
               placeholder={`Recovery Report — ${genPeriod}`}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
             />
           </div>
         </div>
@@ -346,8 +346,8 @@ function Header({ onGenerate, disabled }: { onGenerate: () => void; disabled?: b
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">Recovery Reports</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-bold text-slate-100">Recovery Reports</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Period snapshots of cloud spend, idle waste, and recoverable savings, with a shareable executive summary.
         </p>
       </div>

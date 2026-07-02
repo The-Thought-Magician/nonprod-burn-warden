@@ -70,22 +70,22 @@ function BreakdownCard({ title, buckets }: { title: string; buckets: Bucket[] })
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-sm font-semibold text-zinc-200">{title}</h3>
+        <h3 className="text-sm font-semibold text-slate-200">{title}</h3>
       </CardHeader>
       <CardBody>
         {sorted.length === 0 ? (
-          <p className="text-sm text-zinc-500">No data.</p>
+          <p className="text-sm text-slate-500">No data.</p>
         ) : (
           <div className="flex flex-col gap-3">
             {sorted.map((b) => (
               <div key={b.key}>
                 <div className="mb-1 flex items-center justify-between text-xs">
-                  <span className="font-medium text-zinc-300">{b.key || 'unknown'}</span>
-                  <span className="tabular-nums text-zinc-400">{dollars(b.cents)}</span>
+                  <span className="font-medium text-slate-300">{b.key || 'unknown'}</span>
+                  <span className="tabular-nums text-slate-400">{dollars(b.cents)}</span>
                 </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                   <div
-                    className="h-full rounded-full bg-yellow-400"
+                    className="h-full rounded-full bg-emerald-400"
                     style={{ width: `${Math.max(2, (b.cents / max) * 100)}%` }}
                   />
                 </div>
@@ -253,8 +253,8 @@ export default function LedgerPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Waste Ledger</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Waste Ledger</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Attributed idle waste by period, environment, provider, service and region.
           </p>
         </div>
@@ -298,11 +298,11 @@ export default function LedgerPage() {
 
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Waste by environment</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Waste by environment</h3>
         </CardHeader>
         <CardBody>
           {byEnv.length === 0 ? (
-            <p className="text-sm text-zinc-500">No environment-level waste recorded yet.</p>
+            <p className="text-sm text-slate-500">No environment-level waste recorded yet.</p>
           ) : (
             <div className="flex flex-col gap-3">
               {[...byEnv]
@@ -310,12 +310,12 @@ export default function LedgerPage() {
                 .map((e) => (
                   <div key={e.environment_id}>
                     <div className="mb-1 flex items-center justify-between text-xs">
-                      <span className="font-medium text-zinc-300">{e.name || e.environment_id}</span>
-                      <span className="tabular-nums text-zinc-400">{dollars(e.wasted_cents)}</span>
+                      <span className="font-medium text-slate-300">{e.name || e.environment_id}</span>
+                      <span className="tabular-nums text-slate-400">{dollars(e.wasted_cents)}</span>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                       <div
-                        className="h-full rounded-full bg-yellow-400"
+                        className="h-full rounded-full bg-emerald-400"
                         style={{ width: `${Math.max(2, ((e.wasted_cents ?? 0) / maxEnvWaste) * 100)}%` }}
                       />
                     </div>
@@ -328,7 +328,7 @@ export default function LedgerPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold text-zinc-200">Ledger entries</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Ledger entries</h3>
           <div className="flex flex-wrap items-center gap-2">
             <select
               value={period}
@@ -336,7 +336,7 @@ export default function LedgerPage() {
                 setPeriod(e.target.value)
                 if (workspaceId) loadData(workspaceId, e.target.value).catch((err: any) => setError(err?.message || 'Filter failed.'))
               }}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               <option value="">All periods</option>
               {periods.map((p) => (
@@ -349,7 +349,7 @@ export default function LedgerPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search entries…"
-              className="w-48 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </div>
         </CardHeader>
@@ -388,19 +388,19 @@ export default function LedgerPage() {
                 {filteredEntries.map((e) => (
                   <TR key={e.id}>
                     <TD>
-                      <span className="font-medium text-zinc-200">{e.period || '—'}</span>
+                      <span className="font-medium text-slate-200">{e.period || '—'}</span>
                     </TD>
                     <TD>
                       {e.environment_id ? (
                         <Badge tone="info">{envNameById.get(e.environment_id) || e.environment_id}</Badge>
                       ) : (
-                        <span className="text-zinc-600">unassigned</span>
+                        <span className="text-slate-600">unassigned</span>
                       )}
                     </TD>
                     <TD className="text-right tabular-nums">{(e.idle_hours ?? 0).toFixed(1)}</TD>
                     <TD className="text-right tabular-nums">{(e.off_hours_idle_hours ?? 0).toFixed(1)}</TD>
-                    <TD className="text-right tabular-nums text-zinc-400">{dollars(e.hourly_rate_cents)}</TD>
-                    <TD className="text-right font-semibold tabular-nums text-yellow-300">{compactDollars(e.wasted_cents)}</TD>
+                    <TD className="text-right tabular-nums text-slate-400">{dollars(e.hourly_rate_cents)}</TD>
+                    <TD className="text-right font-semibold tabular-nums text-emerald-300">{compactDollars(e.wasted_cents)}</TD>
                   </TR>
                 ))}
               </TBody>

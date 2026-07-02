@@ -244,8 +244,8 @@ export default function BudgetsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Budgets</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Budgets</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Per-team monthly budgets versus actual spend, with end-of-period projections and over-budget flags.
           </p>
         </div>
@@ -253,7 +253,7 @@ export default function BudgetsPage() {
           <select
             value={period}
             onChange={(e) => onPeriodChange(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
           >
             {periods.map((p) => (
               <option key={p} value={p}>
@@ -298,14 +298,14 @@ export default function BudgetsPage() {
       </div>
 
       {teams.length === 0 && (
-        <div className="rounded-lg border border-yellow-500/40 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-300">
+        <div className="rounded-lg border border-emerald-500/40 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
           No teams exist yet. Create a team first to assign budgets.
         </div>
       )}
 
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Budgets for {period || 'all periods'}</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Budgets for {period || 'all periods'}</h3>
         </CardHeader>
         <CardBody className="p-0">
           {sorted.length === 0 ? (
@@ -342,7 +342,7 @@ export default function BudgetsPage() {
                   return (
                     <TR key={b.id}>
                       <TD>
-                        <span className="font-medium text-zinc-100">
+                        <span className="font-medium text-slate-100">
                           {teamNameById.get(b.team_id) || b.team_id}
                         </span>
                       </TD>
@@ -351,11 +351,11 @@ export default function BudgetsPage() {
                       </TD>
                       <TD className="text-right tabular-nums">{dollars(budget)}</TD>
                       <TD className="text-right tabular-nums font-medium">
-                        <span className={over ? 'text-red-300' : 'text-zinc-200'}>{dollars(actual)}</span>
+                        <span className={over ? 'text-red-300' : 'text-slate-200'}>{dollars(actual)}</span>
                       </TD>
                       <TD>
                         <div className="mb-1 flex items-center justify-between text-xs">
-                          <span className="tabular-nums text-zinc-400">{pct.toFixed(0)}%</span>
+                          <span className="tabular-nums text-slate-400">{pct.toFixed(0)}%</span>
                           {over ? (
                             <Badge tone="danger">over</Badge>
                           ) : pct >= 80 ? (
@@ -364,15 +364,15 @@ export default function BudgetsPage() {
                             <Badge tone="success">on track</Badge>
                           )}
                         </div>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                           <div
-                            className={`h-full rounded-full ${over ? 'bg-red-500' : pct >= 80 ? 'bg-yellow-400' : 'bg-emerald-500'}`}
+                            className={`h-full rounded-full ${over ? 'bg-red-500' : pct >= 80 ? 'bg-emerald-400' : 'bg-emerald-500'}`}
                             style={{ width: `${Math.min(100, Math.max(2, pct))}%` }}
                           />
                         </div>
                       </TD>
                       <TD className="text-right tabular-nums">
-                        <span className={projOver ? 'text-yellow-300' : 'text-zinc-300'}>{dollars(projected)}</span>
+                        <span className={projOver ? 'text-emerald-300' : 'text-slate-300'}>{dollars(projected)}</span>
                       </TD>
                       <TD className="text-right">
                         <div className="flex justify-end gap-2">
@@ -415,12 +415,12 @@ export default function BudgetsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Team</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Team</span>
             <select
               value={form.team_id}
               onChange={(e) => setForm((f) => ({ ...f, team_id: e.target.value }))}
               disabled={!!editing}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none disabled:opacity-60"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none disabled:opacity-60"
             >
               <option value="">Select a team…</option>
               {teams.map((t) => (
@@ -431,17 +431,17 @@ export default function BudgetsPage() {
             </select>
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Period</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Period</span>
             <input
               value={form.period}
               onChange={(e) => setForm((f) => ({ ...f, period: e.target.value }))}
               placeholder="YYYY-MM"
               disabled={!!editing}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none disabled:opacity-60"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none disabled:opacity-60"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Monthly budget (USD)</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Monthly budget (USD)</span>
             <input
               type="number"
               min="0"
@@ -450,9 +450,9 @@ export default function BudgetsPage() {
               onChange={(e) => setForm((f) => ({ ...f, budget_dollars: e.target.value }))}
               placeholder="5000"
               autoFocus
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
-            <span className="text-xs text-zinc-600">Stored as integer cents on the backend.</span>
+            <span className="text-xs text-slate-600">Stored as integer cents on the backend.</span>
           </label>
         </div>
       </Modal>

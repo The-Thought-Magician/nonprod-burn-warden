@@ -304,8 +304,8 @@ export default function RulesPage() {
       {/* header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-zinc-100">Naming &amp; Pattern Rules</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-xl font-bold text-slate-100">Naming &amp; Pattern Rules</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Classify resources into environments by matching names against patterns. Lower priority wins.
           </p>
         </div>
@@ -314,7 +314,7 @@ export default function RulesPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
+              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -357,8 +357,8 @@ export default function RulesPage() {
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-zinc-100">Apply rules</h2>
-                <p className="text-xs text-zinc-500">
+                <h2 className="text-sm font-semibold text-slate-100">Apply rules</h2>
+                <p className="text-xs text-slate-500">
                   Run every active rule against the inventory to (re)classify resources and surface coverage gaps.
                 </p>
               </div>
@@ -378,7 +378,7 @@ export default function RulesPage() {
                     </div>
                     {gapList.length > 0 && (
                       <div>
-                        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
+                        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
                           Unclassified / gaps
                         </div>
                         <div className="flex flex-wrap gap-2">
@@ -404,12 +404,12 @@ export default function RulesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by name or pattern..."
-              className="w-64 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
+              className="w-64 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
             />
             <select
               value={kindFilter}
               onChange={(e) => setKindFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
+              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
             >
               <option value="all">All env kinds</option>
               {ENV_KINDS.map((k) => (
@@ -418,7 +418,7 @@ export default function RulesPage() {
                 </option>
               ))}
             </select>
-            <span className="text-xs text-zinc-500">
+            <span className="text-xs text-slate-500">
               {filtered.length} of {rules.length} rules
             </span>
           </div>
@@ -449,18 +449,18 @@ export default function RulesPage() {
               <TBody>
                 {filtered.map((r) => (
                   <TR key={r.id}>
-                    <TD className="tabular-nums text-zinc-400">{r.priority}</TD>
-                    <TD className="font-medium text-zinc-100">{r.name}</TD>
+                    <TD className="tabular-nums text-slate-400">{r.priority}</TD>
+                    <TD className="font-medium text-slate-100">{r.name}</TD>
                     <TD>
                       <Badge tone="info">{r.match_type}</Badge>
                     </TD>
                     <TD>
-                      <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-yellow-300">{r.pattern}</code>
+                      <code className="rounded bg-slate-800 px-1.5 py-0.5 text-xs text-emerald-300">{r.pattern}</code>
                     </TD>
                     <TD>
-                      {r.env_kind ? <Badge tone={envTone(r.env_kind)}>{r.env_kind}</Badge> : <span className="text-zinc-600">-</span>}
+                      {r.env_kind ? <Badge tone={envTone(r.env_kind)}>{r.env_kind}</Badge> : <span className="text-slate-600">-</span>}
                     </TD>
-                    <TD className="text-right tabular-nums text-zinc-300">{(r.hit_count || 0).toLocaleString()}</TD>
+                    <TD className="text-right tabular-nums text-slate-300">{(r.hit_count || 0).toLocaleString()}</TD>
                     <TD>
                       <button
                         onClick={() => toggleActive(r)}
@@ -517,7 +517,7 @@ export default function RulesPage() {
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Dev clusters by prefix"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -525,7 +525,7 @@ export default function RulesPage() {
               <select
                 value={form.match_type}
                 onChange={(e) => setForm((f) => ({ ...f, match_type: e.target.value }))}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
+                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
               >
                 {MATCH_TYPES.map((m) => (
                   <option key={m} value={m}>
@@ -538,7 +538,7 @@ export default function RulesPage() {
               <select
                 value={form.env_kind}
                 onChange={(e) => setForm((f) => ({ ...f, env_kind: e.target.value }))}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
+                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
               >
                 {ENV_KINDS.map((k) => (
                   <option key={k} value={k}>
@@ -553,7 +553,7 @@ export default function RulesPage() {
               value={form.pattern}
               onChange={(e) => setForm((f) => ({ ...f, pattern: e.target.value }))}
               placeholder="e.g. dev-* or .*staging.*"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-sm text-yellow-300"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-emerald-300"
             />
           </Field>
           <div className="grid grid-cols-2 items-end gap-4">
@@ -562,15 +562,15 @@ export default function RulesPage() {
                 type="number"
                 value={form.priority}
                 onChange={(e) => setForm((f) => ({ ...f, priority: Number(e.target.value) }))}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
+                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
               />
             </Field>
-            <label className="flex items-center gap-2 pb-2 text-sm text-zinc-300">
+            <label className="flex items-center gap-2 pb-2 text-sm text-slate-300">
               <input
                 type="checkbox"
                 checked={form.is_active}
                 onChange={(e) => setForm((f) => ({ ...f, is_active: e.target.checked }))}
-                className="h-4 w-4 accent-yellow-400"
+                className="h-4 w-4 accent-emerald-400"
               />
               Active
             </label>
@@ -591,9 +591,9 @@ export default function RulesPage() {
         className="max-w-2xl"
       >
         <div className="space-y-4">
-          <div className="text-sm text-zinc-400">
+          <div className="text-sm text-slate-400">
             Resources matched by{' '}
-            <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-yellow-300">{previewLabel || '—'}</code>
+            <code className="rounded bg-slate-800 px-1.5 py-0.5 text-xs text-emerald-300">{previewLabel || '—'}</code>
           </div>
           {previewing ? (
             <div className="py-8">
@@ -619,10 +619,10 @@ export default function RulesPage() {
                   <TBody>
                     {previewResult.matched.map((m) => (
                       <TR key={m.id}>
-                        <TD className="font-medium text-zinc-100">{m.name}</TD>
-                        <TD className="text-zinc-400">{m.resource_type || m.service || '-'}</TD>
-                        <TD className="text-zinc-400">{m.region || '-'}</TD>
-                        <TD className="text-right tabular-nums text-zinc-300">{money(m.monthly_cost_cents)}</TD>
+                        <TD className="font-medium text-slate-100">{m.name}</TD>
+                        <TD className="text-slate-400">{m.resource_type || m.service || '-'}</TD>
+                        <TD className="text-slate-400">{m.region || '-'}</TD>
+                        <TD className="text-right tabular-nums text-slate-300">{money(m.monthly_cost_cents)}</TD>
                       </TR>
                     ))}
                   </TBody>
@@ -639,7 +639,7 @@ export default function RulesPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
+      <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
       {children}
     </label>
   )

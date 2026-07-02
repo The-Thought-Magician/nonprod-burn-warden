@@ -238,8 +238,8 @@ export default function RecommendationsPage() {
                 onClick={() => setStatusFilter(s)}
                 className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
                   statusFilter === s
-                    ? 'border-yellow-500/50 bg-yellow-400/10 text-yellow-300'
-                    : 'border-zinc-700 bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
+                    ? 'border-emerald-500/50 bg-emerald-400/10 text-emerald-300'
+                    : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                 }`}
               >
                 {s}
@@ -250,7 +250,7 @@ export default function RecommendationsPage() {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 focus:border-yellow-500/60 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 focus:border-emerald-500/60 focus:outline-none"
             >
               <option value="all">All types</option>
               {types.map((t) => (
@@ -263,7 +263,7 @@ export default function RecommendationsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search recommendations…"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-yellow-500/60 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
             />
           </div>
         </CardHeader>
@@ -291,22 +291,22 @@ export default function RecommendationsPage() {
                 return (
                   <li
                     key={r.id}
-                    className="rounded-xl border border-zinc-800 bg-zinc-950/40 p-4 transition-colors hover:border-zinc-700"
+                    className="rounded-xl border border-slate-800 bg-slate-950/40 p-4 transition-colors hover:border-slate-700"
                   >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-xs font-bold tabular-nums text-zinc-600">#{i + 1}</span>
+                          <span className="text-xs font-bold tabular-nums text-slate-600">#{i + 1}</span>
                           {r.rec_type && <Badge tone={typeTone(r.rec_type)}>{titleCase(r.rec_type)}</Badge>}
                           <Badge tone={statusTone(status)} className="capitalize">
                             {status}
                           </Badge>
                         </div>
-                        <h3 className="mt-2 text-sm font-semibold text-zinc-100">{r.title || 'Recommendation'}</h3>
-                        {r.detail && <p className="mt-1 text-sm text-zinc-400">{r.detail}</p>}
-                        <div className="mt-3 h-2 w-full max-w-md overflow-hidden rounded-full bg-zinc-800">
+                        <h3 className="mt-2 text-sm font-semibold text-slate-100">{r.title || 'Recommendation'}</h3>
+                        {r.detail && <p className="mt-1 text-sm text-slate-400">{r.detail}</p>}
+                        <div className="mt-3 h-2 w-full max-w-md overflow-hidden rounded-full bg-slate-800">
                           <div
-                            className="h-full rounded-full bg-yellow-400"
+                            className="h-full rounded-full bg-emerald-400"
                             style={{ width: `${((r.recoverable_cents ?? 0) / maxRecoverable) * 100}%` }}
                           />
                         </div>
@@ -316,7 +316,7 @@ export default function RecommendationsPage() {
                           <div className="text-lg font-bold tabular-nums text-emerald-300">
                             {money(r.recoverable_cents)}
                           </div>
-                          <div className="text-xs text-zinc-500">recoverable / mo</div>
+                          <div className="text-xs text-slate-500">recoverable / mo</div>
                         </div>
                         <div className="inline-flex gap-1">
                           {status !== 'applied' && (
@@ -374,8 +374,8 @@ function Header({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">Recommendations</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-bold text-slate-100">Recommendations</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Ranked, actionable ways to cut nonprod burn — sourced from savings estimates and orphan findings.
         </p>
       </div>

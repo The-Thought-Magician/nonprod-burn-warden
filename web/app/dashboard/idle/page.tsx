@@ -49,13 +49,13 @@ function fmtDate(s: string) {
 }
 
 function heatColor(v: number, max: number) {
-  if (max <= 0 || v <= 0) return 'bg-zinc-800/60'
+  if (max <= 0 || v <= 0) return 'bg-slate-800/60'
   const t = v / max
-  if (t > 0.8) return 'bg-yellow-300'
-  if (t > 0.6) return 'bg-yellow-400/80'
-  if (t > 0.4) return 'bg-yellow-500/60'
-  if (t > 0.2) return 'bg-yellow-600/45'
-  return 'bg-yellow-700/30'
+  if (t > 0.8) return 'bg-emerald-300'
+  if (t > 0.6) return 'bg-emerald-400/80'
+  if (t > 0.4) return 'bg-emerald-500/60'
+  if (t > 0.2) return 'bg-emerald-600/45'
+  return 'bg-emerald-700/30'
 }
 
 export default function IdlePage() {
@@ -229,8 +229,8 @@ export default function IdlePage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-zinc-100">Idle Analysis</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-xl font-bold text-slate-100">Idle Analysis</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Detect idle compute from usage samples, see idle-hours per environment, and visualize when the burn happens.
           </p>
         </div>
@@ -238,7 +238,7 @@ export default function IdlePage() {
           <select
             value={workspaceId}
             onChange={(e) => setWorkspaceId(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
+            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -271,15 +271,15 @@ export default function IdlePage() {
           {/* detection */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-zinc-100">Run idle detection</h2>
-              <p className="text-xs text-zinc-500">
+              <h2 className="text-sm font-semibold text-slate-100">Run idle detection</h2>
+              <p className="text-xs text-slate-500">
                 Scans usage samples and records idle windows where utilization stays below the threshold.
               </p>
             </CardHeader>
             <CardBody>
               <div className="flex flex-wrap items-end gap-4">
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                  <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">
                     Utilization threshold (%)
                   </span>
                   <input
@@ -288,15 +288,15 @@ export default function IdlePage() {
                     max={100}
                     value={threshold}
                     onChange={(e) => setThreshold(Number(e.target.value))}
-                    className="w-32 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
+                    className="w-32 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500">Scope</span>
+                  <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">Scope</span>
                   <select
                     value={selectedEnv}
                     onChange={(e) => setSelectedEnv(e.target.value)}
-                    className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
+                    className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
                   >
                     <option value="all">All environments</option>
                     {environments.map((e) => (
@@ -328,7 +328,7 @@ export default function IdlePage() {
           {/* per-env idle hours */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-zinc-100">Idle hours per week, by environment</h2>
+              <h2 className="text-sm font-semibold text-slate-100">Idle hours per week, by environment</h2>
             </CardHeader>
             <CardBody>
               {summaryRows.length === 0 ? (
@@ -340,16 +340,16 @@ export default function IdlePage() {
                 <div className="space-y-3">
                   {summaryRows.map((r) => (
                     <div key={r.environment_id} className="flex items-center gap-3">
-                      <div className="w-44 truncate text-sm text-zinc-300" title={r.name}>
+                      <div className="w-44 truncate text-sm text-slate-300" title={r.name}>
                         {r.name}
                       </div>
-                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-yellow-400"
+                          className="h-full rounded-full bg-emerald-400"
                           style={{ width: `${((r.idle_hours_per_week || 0) / maxIdle) * 100}%` }}
                         />
                       </div>
-                      <div className="w-20 text-right text-sm tabular-nums text-zinc-300">
+                      <div className="w-20 text-right text-sm tabular-nums text-slate-300">
                         {(r.idle_hours_per_week || 0).toFixed(1)}h
                       </div>
                       <div className="w-24 text-right">
@@ -366,13 +366,13 @@ export default function IdlePage() {
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-zinc-100">Idle heatmap (hour of week)</h2>
-                <p className="text-xs text-zinc-500">Darker cells = more idle. Rows are days, columns are hours.</p>
+                <h2 className="text-sm font-semibold text-slate-100">Idle heatmap (hour of week)</h2>
+                <p className="text-xs text-slate-500">Darker cells = more idle. Rows are days, columns are hours.</p>
               </div>
               <select
                 value={heatmapEnv}
                 onChange={(e) => setHeatmapEnv(e.target.value)}
-                className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
+                className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
               >
                 <option value="">Select environment</option>
                 {environments.map((e) => (
@@ -401,14 +401,14 @@ export default function IdlePage() {
                   <div className="inline-block min-w-full">
                     <div className="mb-1 flex gap-[3px] pl-10">
                       {Array.from({ length: 24 }).map((_, h) => (
-                        <div key={h} className="w-[14px] text-center text-[9px] text-zinc-600">
+                        <div key={h} className="w-[14px] text-center text-[9px] text-slate-600">
                           {h % 3 === 0 ? h : ''}
                         </div>
                       ))}
                     </div>
                     {heatmap.grid.map((row, d) => (
                       <div key={d} className="mb-[3px] flex items-center gap-[3px]">
-                        <div className="w-10 text-right text-[10px] text-zinc-500">{DAYS[d] || `D${d}`}</div>
+                        <div className="w-10 text-right text-[10px] text-slate-500">{DAYS[d] || `D${d}`}</div>
                         {Array.from({ length: 24 }).map((_, h) => {
                           const v = row?.[h] ?? 0
                           return (
@@ -421,11 +421,11 @@ export default function IdlePage() {
                         })}
                       </div>
                     ))}
-                    <div className="mt-3 flex items-center gap-2 pl-10 text-[10px] text-zinc-500">
+                    <div className="mt-3 flex items-center gap-2 pl-10 text-[10px] text-slate-500">
                       <span>less</span>
-                      <div className="h-[12px] w-[12px] rounded-sm bg-yellow-700/30" />
-                      <div className="h-[12px] w-[12px] rounded-sm bg-yellow-500/60" />
-                      <div className="h-[12px] w-[12px] rounded-sm bg-yellow-300" />
+                      <div className="h-[12px] w-[12px] rounded-sm bg-emerald-700/30" />
+                      <div className="h-[12px] w-[12px] rounded-sm bg-emerald-500/60" />
+                      <div className="h-[12px] w-[12px] rounded-sm bg-emerald-300" />
                       <span>more idle</span>
                     </div>
                   </div>
@@ -437,11 +437,11 @@ export default function IdlePage() {
           {/* idle windows table */}
           <div>
             <div className="mb-3 flex flex-wrap items-center gap-3">
-              <h2 className="text-sm font-semibold text-zinc-100">Idle windows</h2>
+              <h2 className="text-sm font-semibold text-slate-100">Idle windows</h2>
               <select
                 value={selectedEnv}
                 onChange={(e) => setSelectedEnv(e.target.value)}
-                className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
+                className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
               >
                 <option value="all">All environments</option>
                 {environments.map((e) => (
@@ -450,16 +450,16 @@ export default function IdlePage() {
                   </option>
                 ))}
               </select>
-              <label className="flex items-center gap-2 text-sm text-zinc-300">
+              <label className="flex items-center gap-2 text-sm text-slate-300">
                 <input
                   type="checkbox"
                   checked={offHoursOnly}
                   onChange={(e) => setOffHoursOnly(e.target.checked)}
-                  className="h-4 w-4 accent-yellow-400"
+                  className="h-4 w-4 accent-emerald-400"
                 />
                 Off-hours only
               </label>
-              <span className="text-xs text-zinc-500">{filteredWindows.length} windows</span>
+              <span className="text-xs text-slate-500">{filteredWindows.length} windows</span>
             </div>
 
             {windows.length === 0 ? (
@@ -484,10 +484,10 @@ export default function IdlePage() {
                 <TBody>
                   {filteredWindows.slice(0, 200).map((w) => (
                     <TR key={w.id}>
-                      <TD className="text-zinc-200">{envName(w.environment_id)}</TD>
-                      <TD className="text-zinc-400">{fmtDate(w.start_at)}</TD>
-                      <TD className="text-zinc-400">{fmtDate(w.end_at)}</TD>
-                      <TD className="text-right tabular-nums text-zinc-300">{(w.duration_hours || 0).toFixed(1)}h</TD>
+                      <TD className="text-slate-200">{envName(w.environment_id)}</TD>
+                      <TD className="text-slate-400">{fmtDate(w.start_at)}</TD>
+                      <TD className="text-slate-400">{fmtDate(w.end_at)}</TD>
+                      <TD className="text-right tabular-nums text-slate-300">{(w.duration_hours || 0).toFixed(1)}h</TD>
                       <TD>
                         <Badge tone={w.is_off_hours ? 'warning' : 'danger'}>
                           {w.is_off_hours ? 'off-hours' : 'business hours'}
@@ -500,7 +500,7 @@ export default function IdlePage() {
               </Table>
             )}
             {filteredWindows.length > 200 && (
-              <p className="mt-2 text-xs text-zinc-500">Showing top 200 of {filteredWindows.length} windows by waste.</p>
+              <p className="mt-2 text-xs text-slate-500">Showing top 200 of {filteredWindows.length} windows by waste.</p>
             )}
           </div>
         </>

@@ -394,8 +394,8 @@ export default function AlertsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Alerts</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Alerts</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Define threshold rules over waste, budgets and orphans. Evaluate to fire alerts, then acknowledge or
             resolve them.
           </p>
@@ -435,12 +435,12 @@ export default function AlertsPage() {
       {/* Alert feed */}
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold text-zinc-200">Alert feed</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Alert feed</h3>
           <div className="flex flex-wrap items-center gap-2">
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               <option value="all">All severities</option>
               {SEVERITIES.map((s) => (
@@ -452,7 +452,7 @@ export default function AlertsPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               <option value="all">All statuses</option>
               <option value="open">Open</option>
@@ -495,7 +495,7 @@ export default function AlertsPage() {
                         <Badge tone={severityTone(a.severity)}>{a.severity || 'info'}</Badge>
                       </TD>
                       <TD>
-                        <div className="text-zinc-100">{a.message || '—'}</div>
+                        <div className="text-slate-100">{a.message || '—'}</div>
                         {a.link && (
                           <a href={a.link} className="text-xs text-sky-300 hover:underline">
                             View detail →
@@ -505,7 +505,7 @@ export default function AlertsPage() {
                       <TD>
                         <Badge tone={statusTone(a.status)}>{a.status || 'open'}</Badge>
                       </TD>
-                      <TD className="whitespace-nowrap text-xs text-zinc-500">
+                      <TD className="whitespace-nowrap text-xs text-slate-500">
                         {a.created_at ? new Date(a.created_at).toLocaleString() : '—'}
                       </TD>
                       <TD className="text-right">
@@ -540,8 +540,8 @@ export default function AlertsPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 className="text-sm font-semibold text-zinc-200">Alert rules</h3>
-            <p className="text-xs text-zinc-500">Thresholds evaluated against waste, budgets and orphan findings.</p>
+            <h3 className="text-sm font-semibold text-slate-200">Alert rules</h3>
+            <p className="text-xs text-slate-500">Thresholds evaluated against waste, budgets and orphan findings.</p>
           </div>
           <Button onClick={openCreateRule}>New rule</Button>
         </CardHeader>
@@ -571,10 +571,10 @@ export default function AlertsPage() {
                   const busy = actingId === r.id
                   return (
                     <TR key={r.id}>
-                      <TD className="font-medium text-zinc-100">{r.name}</TD>
-                      <TD className="text-zinc-400">{ruleTypeLabel(r.rule_type)}</TD>
+                      <TD className="font-medium text-slate-100">{r.name}</TD>
+                      <TD className="text-slate-400">{ruleTypeLabel(r.rule_type)}</TD>
                       <TD className="text-right tabular-nums">
-                        {r.threshold_cents != null ? dollars(r.threshold_cents) : <span className="text-zinc-600">—</span>}
+                        {r.threshold_cents != null ? dollars(r.threshold_cents) : <span className="text-slate-600">—</span>}
                       </TD>
                       <TD>
                         <Badge tone={severityTone(r.severity)}>{r.severity || 'info'}</Badge>
@@ -636,21 +636,21 @@ export default function AlertsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Rule name</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Rule name</span>
             <input
               value={ruleForm.name}
               onChange={(e) => setRuleForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Dev waste over $500"
               autoFocus
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Rule type</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Rule type</span>
             <select
               value={ruleForm.rule_type}
               onChange={(e) => setRuleForm((f) => ({ ...f, rule_type: e.target.value }))}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               {RULE_TYPES.map((t) => (
                 <option key={t.value} value={t.value}>
@@ -661,7 +661,7 @@ export default function AlertsPage() {
           </label>
           <div className="grid grid-cols-2 gap-4">
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Threshold (USD)</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Threshold (USD)</span>
               <input
                 type="number"
                 min="0"
@@ -669,16 +669,16 @@ export default function AlertsPage() {
                 value={ruleForm.threshold}
                 onChange={(e) => setRuleForm((f) => ({ ...f, threshold: e.target.value }))}
                 placeholder="500"
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
               />
-              <span className="text-xs text-zinc-600">Stored as cents. Leave blank for non-threshold rules.</span>
+              <span className="text-xs text-slate-600">Stored as cents. Leave blank for non-threshold rules.</span>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Severity</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Severity</span>
               <select
                 value={ruleForm.severity}
                 onChange={(e) => setRuleForm((f) => ({ ...f, severity: e.target.value }))}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               >
                 {SEVERITIES.map((s) => (
                   <option key={s} value={s}>
@@ -693,9 +693,9 @@ export default function AlertsPage() {
               type="checkbox"
               checked={ruleForm.is_active}
               onChange={(e) => setRuleForm((f) => ({ ...f, is_active: e.target.checked }))}
-              className="h-4 w-4 rounded border-zinc-600 bg-zinc-950 text-yellow-400 focus:ring-yellow-500"
+              className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-emerald-400 focus:ring-emerald-500"
             />
-            <span className="text-sm text-zinc-300">Active — include in evaluation runs</span>
+            <span className="text-sm text-slate-300">Active — include in evaluation runs</span>
           </label>
         </div>
       </Modal>

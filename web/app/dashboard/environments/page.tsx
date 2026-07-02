@@ -228,14 +228,14 @@ export default function EnvironmentsPage() {
   }
 
   const SortArrow = ({ k }: { k: SortKey }) =>
-    sortKey === k ? <span className="text-yellow-400">{sortDir === 'asc' ? ' ↑' : ' ↓'}</span> : null
+    sortKey === k ? <span className="text-emerald-400">{sortDir === 'asc' ? ' ↑' : ' ↓'}</span> : null
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Environments</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Environments</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Cost and idle-waste per environment. Group resources into dev, staging, preview, and more.
           </p>
         </div>
@@ -269,12 +269,12 @@ export default function EnvironmentsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search environments..."
-              className="w-56 rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-yellow-500 focus:outline-none"
+              className="w-56 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
             />
             <select
               value={kindFilter}
               onChange={(e) => setKindFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
             >
               <option value="all">All kinds</option>
               {ENV_KINDS.map((k) => (
@@ -283,7 +283,7 @@ export default function EnvironmentsPage() {
                 </option>
               ))}
             </select>
-            <span className="text-xs text-zinc-500">
+            <span className="text-xs text-slate-500">
               {filtered.length} of {environments.length}
             </span>
           </div>
@@ -325,7 +325,7 @@ export default function EnvironmentsPage() {
                     <TD>
                       <Link
                         href={`/dashboard/environments/${env.id}`}
-                        className="font-medium text-zinc-100 hover:text-yellow-300"
+                        className="font-medium text-slate-100 hover:text-emerald-300"
                       >
                         {env.name}
                       </Link>
@@ -335,7 +335,7 @@ export default function EnvironmentsPage() {
                         {env.is_production ? 'production' : env.env_kind}
                       </Badge>
                     </TD>
-                    <TD className="text-zinc-400">{env.timezone || '—'}</TD>
+                    <TD className="text-slate-400">{env.timezone || '—'}</TD>
                     <TD className="text-right tabular-nums">{env.resource_count ?? 0}</TD>
                     <TD className="text-right tabular-nums">{fmtMoney(env.monthly_cost_cents)}</TD>
                     <TD className="text-right font-semibold tabular-nums text-red-300">
@@ -372,22 +372,22 @@ export default function EnvironmentsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-300">Name</label>
+            <label className="mb-1 block text-sm font-medium text-slate-300">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               autoFocus
               placeholder="e.g. dev-eu-west"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-yellow-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-zinc-300">Kind</label>
+              <label className="mb-1 block text-sm font-medium text-slate-300">Kind</label>
               <select
                 value={form.env_kind}
                 onChange={(e) => setForm({ ...form, env_kind: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 {ENV_KINDS.map((k) => (
                   <option key={k} value={k}>
@@ -397,30 +397,30 @@ export default function EnvironmentsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-zinc-300">Timezone</label>
+              <label className="mb-1 block text-sm font-medium text-slate-300">Timezone</label>
               <input
                 value={form.timezone}
                 onChange={(e) => setForm({ ...form, timezone: e.target.value })}
                 placeholder="UTC"
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-300">Description (optional)</label>
+            <label className="mb-1 block text-sm font-medium text-slate-300">Description (optional)</label>
             <input
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               placeholder="What runs here?"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-yellow-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
             />
           </div>
-          <label className="flex items-center gap-2 text-sm text-zinc-300">
+          <label className="flex items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={form.is_production}
               onChange={(e) => setForm({ ...form, is_production: e.target.checked })}
-              className="h-4 w-4 rounded border-zinc-700 bg-zinc-800 accent-yellow-400"
+              className="h-4 w-4 rounded border-slate-700 bg-slate-800 accent-emerald-400"
             />
             Production environment (excluded from idle-waste recovery)
           </label>

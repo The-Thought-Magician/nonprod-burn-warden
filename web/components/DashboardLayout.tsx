@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth/client'
+import { RightRail } from '@/components/RightRail'
+
+const ACTIVE_WS_KEY = 'nbw_active_workspace'
+const RIGHT_RAIL_PATHS = ['/dashboard', '/dashboard/environments']
 
 type NavItem = { label: string; href: string }
 type NavSection = { title: string; items: NavItem[] }
@@ -81,6 +85,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [ready, setReady] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [workspaceName, setWorkspaceName] = useState('Workspace')
+  const [workspaceId, setWorkspaceId] = useState('')
 
   useEffect(() => {
     let active = true
@@ -104,6 +109,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     setDrawerOpen(false)
   }, [pathname])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setWorkspaceId(localStorage.getItem(ACTIVE_WS_KEY) || '')
+  }, [pathname])
+
   const signOut = async () => {
     await authClient.signOut()
     router.push('/')
@@ -111,8 +121,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!ready) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950">
-        <span className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-700 border-t-yellow-400" />
+      <div className="flex min-h-screen items-center justify-center bg-slate-950">
+        <span className="h-6 w-6 animate-spin rounded-full border-2 border-slate-700 border-t-emerald-400" />
       </div>
     )
   }
@@ -121,12 +131,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <nav className="flex h-full flex-col gap-6 overflow-y-auto px-3 py-5">
       <Link href="/dashboard" className="flex items-center gap-2 px-2">
         <span className="text-lg">🔥</span>
-        <span className="text-sm font-bold tracking-tight text-zinc-100">NonprodBurnWarden</span>
+        <span className="text-sm font-bold tracking-tight text-slate-100">NonprodBurnWarden</span>
       </Link>
       <div className="flex flex-col gap-5">
         {NAV.map((section) => (
           <div key={section.title}>
-            <div className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-600">
+            <div className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600">
               {section.title}
             </div>
             <div className="flex flex-col">
@@ -138,8 +148,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     href={item.href}
                     className={`rounded-md px-2 py-1.5 text-sm transition-colors ${
                       active
-                        ? 'bg-yellow-400/10 font-medium text-yellow-300'
-                        : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200'
+                        ? 'bg-emerald-400/10 font-medium text-emerald-300'
+                        : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
                     }`}
                   >
                     {item.label}
@@ -154,21 +164,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   )
 
   return (
-    <div className="flex min-h-screen bg-zinc-950">
-      <aside className="hidden w-64 shrink-0 border-r border-zinc-800 bg-zinc-900/40 lg:block">{sidebar}</aside>
+    <div className="flex min-h-screen bg-slate-950">
+      <aside className="hidden w-64 shrink-0 border-r border-slate-800 bg-slate-900/40 lg:block">{sidebar}</aside>
 
       {drawerOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-black/70" onClick={() => setDrawerOpen(false)} />
-          <aside className="absolute left-0 top-0 h-full w-64 border-r border-zinc-800 bg-zinc-900">{sidebar}</aside>
+          <aside className="absolute left-0 top-0 h-full w-64 border-r border-slate-800 bg-slate-900">{sidebar}</aside>
         </div>
       )}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-4 py-3 backdrop-blur">
+        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-800 bg-slate-950/80 px-4 py-3 backdrop-blur">
           <div className="flex items-center gap-3">
             <button
-              className="rounded-md p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 lg:hidden"
+              className="rounded-md p-1.5 text-slate-400 hover:bg-slate-800 hover:text-slate-100 lg:hidden"
               onClick={() => setDrawerOpen(true)}
               aria-label="Open menu"
             >
@@ -176,16 +186,25 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <span className="mt-1 block h-0.5 w-5 bg-current" />
               <span className="mt-1 block h-0.5 w-5 bg-current" />
             </button>
-            <span className="text-sm font-medium text-zinc-300">{workspaceName}</span>
+            <span className="text-sm font-medium text-slate-300">{workspaceName}</span>
           </div>
           <button
             onClick={signOut}
-            className="rounded-md border border-zinc-700 px-3 py-1.5 text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+            className="rounded-md border border-slate-700 px-3 py-1.5 text-sm text-slate-300 transition-colors hover:bg-slate-800 hover:text-slate-100"
           >
             Sign out
           </button>
         </header>
-        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-8">
+          {RIGHT_RAIL_PATHS.includes(pathname) && workspaceId ? (
+            <div className="flex flex-col gap-6 lg:flex-row">
+              <div className="min-w-0 flex-1">{children}</div>
+              <RightRail workspaceId={workspaceId} />
+            </div>
+          ) : (
+            children
+          )}
+        </main>
       </div>
     </div>
   )

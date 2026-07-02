@@ -171,18 +171,18 @@ export default function ResourceDetailPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <Link href="/dashboard/resources" className="text-sm text-zinc-500 hover:text-zinc-300">
+          <Link href="/dashboard/resources" className="text-sm text-slate-500 hover:text-slate-300">
             ← Resources
           </Link>
           <div className="mt-1 flex flex-wrap items-center gap-3">
-            <h1 className="text-2xl font-bold text-zinc-100">{r?.name ?? r?.external_id}</h1>
+            <h1 className="text-2xl font-bold text-slate-100">{r?.name ?? r?.external_id}</h1>
             {r?.env_kind && <Badge tone={envTone(r.env_kind)}>{r.env_kind}</Badge>}
             {r?.is_active === false && <Badge tone="default">inactive</Badge>}
           </div>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-sm text-slate-500">
             {[r?.provider?.toUpperCase(), r?.service, r?.resource_type, r?.region].filter(Boolean).join(' · ')}
           </p>
-          <p className="text-xs text-zinc-600">{r?.external_id}</p>
+          <p className="text-xs text-slate-600">{r?.external_id}</p>
         </div>
         <Button variant="secondary" onClick={() => setEditing((v) => !v)}>
           {editing ? 'Close editor' : 'Edit resource'}
@@ -207,24 +207,24 @@ export default function ResourceDetailPage() {
       {editing && (
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-zinc-100">Edit resource</h2>
+            <h2 className="text-base font-semibold text-slate-100">Edit resource</h2>
           </CardHeader>
           <CardBody>
             <form onSubmit={saveEdit} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs text-zinc-500">Name</label>
+                <label className="mb-1 block text-xs text-slate-500">Name</label>
                 <input
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-zinc-500">Env kind</label>
+                <label className="mb-1 block text-xs text-slate-500">Env kind</label>
                 <select
                   value={form.env_kind}
                   onChange={(e) => setForm({ ...form, env_kind: e.target.value })}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
                 >
                   <option value="">Unclassified</option>
                   {ENV_KINDS.map((k) => (
@@ -235,30 +235,30 @@ export default function ResourceDetailPage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs text-zinc-500">Service</label>
+                <label className="mb-1 block text-xs text-slate-500">Service</label>
                 <input
                   value={form.service}
                   onChange={(e) => setForm({ ...form, service: e.target.value })}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-zinc-500">Region</label>
+                <label className="mb-1 block text-xs text-slate-500">Region</label>
                 <input
                   value={form.region}
                   onChange={(e) => setForm({ ...form, region: e.target.value })}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-zinc-500">Monthly cost ($)</label>
+                <label className="mb-1 block text-xs text-slate-500">Monthly cost ($)</label>
                 <input
                   type="number"
                   min="0"
                   step="0.01"
                   value={form.monthly_cost_cents}
                   onChange={(e) => setForm({ ...form, monthly_cost_cents: e.target.value })}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
                 />
               </div>
               <div className="flex items-end gap-2">
@@ -278,7 +278,7 @@ export default function ResourceDetailPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-1">
           <CardHeader>
-            <h2 className="text-base font-semibold text-zinc-100">Details</h2>
+            <h2 className="text-base font-semibold text-slate-100">Details</h2>
           </CardHeader>
           <CardBody>
             <dl className="space-y-2 text-sm">
@@ -286,12 +286,12 @@ export default function ResourceDetailPage() {
                 {r?.environment_id ? (
                   <Link
                     href={`/dashboard/environments/${r.environment_id}`}
-                    className="text-yellow-400 hover:text-yellow-300"
+                    className="text-emerald-400 hover:text-emerald-300"
                   >
                     View environment →
                   </Link>
                 ) : (
-                  <span className="text-zinc-500">Unassigned</span>
+                  <span className="text-slate-500">Unassigned</span>
                 )}
               </Row>
               <Row label="Classification">
@@ -305,7 +305,7 @@ export default function ResourceDetailPage() {
               <Row label="Active">{r?.is_active === false ? 'No' : 'Yes'}</Row>
               {r?.tags && Object.keys(r.tags).length > 0 && (
                 <div className="pt-2">
-                  <dt className="mb-1 text-xs uppercase tracking-wide text-zinc-500">Tags</dt>
+                  <dt className="mb-1 text-xs uppercase tracking-wide text-slate-500">Tags</dt>
                   <dd className="flex flex-wrap gap-1">
                     {Object.entries(r.tags).map(([k, v]) => (
                       <Badge key={k}>
@@ -323,7 +323,7 @@ export default function ResourceDetailPage() {
         <Card className="lg:col-span-2">
           <CardHeader>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 className="text-base font-semibold text-zinc-100">Usage</h2>
+              <h2 className="text-base font-semibold text-slate-100">Usage</h2>
               {metrics.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {metrics.map((m) => (
@@ -332,8 +332,8 @@ export default function ResourceDetailPage() {
                       onClick={() => setActiveMetric(m)}
                       className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                         activeMetric === m
-                          ? 'bg-yellow-400/15 text-yellow-300'
-                          : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                          ? 'bg-emerald-400/15 text-emerald-300'
+                          : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
                       }`}
                     >
                       {m}
@@ -359,11 +359,11 @@ export default function ResourceDetailPage() {
       {/* Cost history */}
       <Card>
         <CardHeader>
-          <h2 className="text-base font-semibold text-zinc-100">Cost History</h2>
+          <h2 className="text-base font-semibold text-slate-100">Cost History</h2>
         </CardHeader>
         <CardBody className="p-0">
           {costRecords.length === 0 ? (
-            <div className="px-5 py-8 text-center text-sm text-zinc-500">No cost records.</div>
+            <div className="px-5 py-8 text-center text-sm text-slate-500">No cost records.</div>
           ) : (
             <Table>
               <THead>
@@ -397,13 +397,13 @@ export default function ResourceDetailPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-semibold text-zinc-100">Idle History</h2>
+            <h2 className="text-base font-semibold text-slate-100">Idle History</h2>
             <Badge tone="warning">{idleWindows.length} windows</Badge>
           </div>
         </CardHeader>
         <CardBody className="p-0">
           {idleWindows.length === 0 ? (
-            <div className="px-5 py-8 text-center text-sm text-zinc-500">
+            <div className="px-5 py-8 text-center text-sm text-slate-500">
               No idle windows detected for this resource.
             </div>
           ) : (
@@ -449,8 +449,8 @@ export default function ResourceDetailPage() {
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <dt className="text-xs uppercase tracking-wide text-zinc-500">{label}</dt>
-      <dd className="text-right text-zinc-300">{children}</dd>
+      <dt className="text-xs uppercase tracking-wide text-slate-500">{label}</dt>
+      <dd className="text-right text-slate-300">{children}</dd>
     </div>
   )
 }
@@ -503,9 +503,9 @@ function UsageChart({
           <circle key={i} cx={x(p.t)} cy={y(p.v)} r={1.6} fill="rgb(250,204,21)" />
         ))}
       </svg>
-      <div className="mt-1 flex justify-between text-[10px] text-zinc-500">
+      <div className="mt-1 flex justify-between text-[10px] text-slate-500">
         <span>{fmtDay(new Date(minT).toISOString())}</span>
-        <span className="text-zinc-400">
+        <span className="text-slate-400">
           {metric} · peak {max.toLocaleString(undefined, { maximumFractionDigits: 2 })}
         </span>
         <span>{fmtDay(new Date(maxT).toISOString())}</span>

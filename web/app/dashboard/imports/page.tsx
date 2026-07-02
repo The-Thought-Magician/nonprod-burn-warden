@@ -377,8 +377,8 @@ export default function ImportsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Imports</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Imports</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Bulk-load resources, cost records and usage samples from CSV. Paste rows or upload a file, then review per
             batch error reports.
           </p>
@@ -411,7 +411,7 @@ export default function ImportsPage() {
 
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">New import</h3>
+          <h3 className="text-sm font-semibold text-slate-200">New import</h3>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
           {importError && (
@@ -427,8 +427,8 @@ export default function ImportsPage() {
                 onClick={() => setKind(k)}
                 className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
                   kind === k
-                    ? 'border-yellow-500 bg-yellow-400/10 text-yellow-300'
-                    : 'border-zinc-700 bg-zinc-950 text-zinc-400 hover:text-zinc-200'
+                    ? 'border-emerald-500 bg-emerald-400/10 text-emerald-300'
+                    : 'border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-200'
                 }`}
               >
                 {KIND_CONFIG[k].label}
@@ -436,12 +436,12 @@ export default function ImportsPage() {
             ))}
           </div>
 
-          <p className="text-sm text-zinc-500">{cfg.description}</p>
+          <p className="text-sm text-slate-500">{cfg.description}</p>
 
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="text-zinc-500">Expected columns:</span>
+            <span className="text-slate-500">Expected columns:</span>
             {cfg.columns.map((c) => (
-              <code key={c} className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-zinc-300">
+              <code key={c} className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-slate-300">
                 {c}
               </code>
             ))}
@@ -449,13 +449,13 @@ export default function ImportsPage() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
                 Cloud account (optional)
               </span>
               <select
                 value={accountId}
                 onChange={(e) => setAccountId(e.target.value)}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">— none —</option>
                 {accounts.map((a) => (
@@ -466,35 +466,35 @@ export default function ImportsPage() {
               </select>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
                 Period {kind === 'costs' ? '' : '(optional)'}
               </span>
               <input
                 value={period}
                 onChange={(e) => setPeriod(e.target.value)}
                 placeholder="YYYY-MM"
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Source label</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Source label</span>
               <input
                 value={source}
                 onChange={(e) => setSource(e.target.value)}
                 placeholder="csv-paste"
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
               />
             </label>
           </div>
 
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">CSV rows</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">CSV rows</span>
               <div className="flex items-center gap-2">
                 <Button variant="ghost" onClick={loadExample} type="button">
                   Load example
                 </Button>
-                <label className="inline-flex cursor-pointer items-center rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm font-medium text-zinc-100 transition-colors hover:bg-zinc-700">
+                <label className="inline-flex cursor-pointer items-center rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm font-medium text-slate-100 transition-colors hover:bg-slate-700">
                   Upload .csv
                   <input
                     type="file"
@@ -511,25 +511,25 @@ export default function ImportsPage() {
               rows={8}
               placeholder={cfg.example}
               spellCheck={false}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-xs text-zinc-200 placeholder-zinc-700 focus:border-yellow-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder-slate-700 focus:border-emerald-500 focus:outline-none"
             />
           </div>
 
           {csvText.trim() && (
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950/60 p-3">
+            <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3">
               <div className="mb-2 flex items-center justify-between text-xs">
-                <span className="text-zinc-400">
+                <span className="text-slate-400">
                   Preview — {parsed.rows.length} data row{parsed.rows.length === 1 ? '' : 's'},{' '}
                   {parsed.headers.length} column{parsed.headers.length === 1 ? '' : 's'}
                 </span>
-                {parsed.rows.length > 5 && <span className="text-zinc-600">showing first 5</span>}
+                {parsed.rows.length > 5 && <span className="text-slate-600">showing first 5</span>}
               </div>
               {parsed.headers.length === 0 ? (
-                <p className="text-sm text-zinc-500">No header row detected.</p>
+                <p className="text-sm text-slate-500">No header row detected.</p>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
-                    <thead className="text-zinc-500">
+                    <thead className="text-slate-500">
                       <tr>
                         {parsed.headers.map((h) => (
                           <th key={h} className="whitespace-nowrap px-2 py-1 font-mono font-medium">
@@ -538,12 +538,12 @@ export default function ImportsPage() {
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800">
+                    <tbody className="divide-y divide-slate-800">
                       {parsed.rows.slice(0, 5).map((r, i) => (
                         <tr key={i}>
                           {parsed.headers.map((h) => (
-                            <td key={h} className="whitespace-nowrap px-2 py-1 font-mono text-zinc-300">
-                              {r[h] || <span className="text-zinc-700">∅</span>}
+                            <td key={h} className="whitespace-nowrap px-2 py-1 font-mono text-slate-300">
+                              {r[h] || <span className="text-slate-700">∅</span>}
                             </td>
                           ))}
                         </tr>
@@ -565,11 +565,11 @@ export default function ImportsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold text-zinc-200">Import history</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Import history</h3>
           <select
             value={kindFilter}
             onChange={(e) => setKindFilter(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
           >
             <option value="all">All kinds</option>
             <option value="resources">Resources</option>
@@ -611,20 +611,20 @@ export default function ImportsPage() {
                       <Badge tone={kindTone(b.kind)}>{b.kind}</Badge>
                     </TD>
                     <TD className="font-mono text-xs">{b.source || '—'}</TD>
-                    <TD>{accountLabel(b.cloud_account_id) || <span className="text-zinc-600">—</span>}</TD>
-                    <TD>{b.period || <span className="text-zinc-600">—</span>}</TD>
+                    <TD>{accountLabel(b.cloud_account_id) || <span className="text-slate-600">—</span>}</TD>
+                    <TD>{b.period || <span className="text-slate-600">—</span>}</TD>
                     <TD className="text-right tabular-nums">{(b.row_count ?? 0).toLocaleString()}</TD>
                     <TD className="text-right tabular-nums">
                       {(b.error_count ?? 0) > 0 ? (
                         <span className="text-red-300">{b.error_count}</span>
                       ) : (
-                        <span className="text-zinc-600">0</span>
+                        <span className="text-slate-600">0</span>
                       )}
                     </TD>
                     <TD>
                       <Badge tone={statusTone(b.status)}>{b.status || 'unknown'}</Badge>
                     </TD>
-                    <TD className="whitespace-nowrap text-xs text-zinc-500">
+                    <TD className="whitespace-nowrap text-xs text-slate-500">
                       {b.created_at ? new Date(b.created_at).toLocaleString() : '—'}
                     </TD>
                     <TD className="text-right">
@@ -669,27 +669,27 @@ export default function ImportsPage() {
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Source</div>
-                <div className="font-mono text-zinc-300">{detail.source || '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Source</div>
+                <div className="font-mono text-slate-300">{detail.source || '—'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Period</div>
-                <div className="text-zinc-300">{detail.period || '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Period</div>
+                <div className="text-slate-300">{detail.period || '—'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Account</div>
-                <div className="text-zinc-300">{accountLabel(detail.cloud_account_id) || '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Account</div>
+                <div className="text-slate-300">{accountLabel(detail.cloud_account_id) || '—'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Created</div>
-                <div className="text-zinc-300">
+                <div className="text-xs uppercase tracking-wide text-slate-500">Created</div>
+                <div className="text-slate-300">
                   {detail.created_at ? new Date(detail.created_at).toLocaleString() : '—'}
                 </div>
               </div>
             </div>
 
             <div>
-              <h4 className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">Row errors</h4>
+              <h4 className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Row errors</h4>
               {detailLoading ? (
                 <div className="py-6">
                   <Spinner label="Loading errors…" />
@@ -699,22 +699,22 @@ export default function ImportsPage() {
                   No errors — all rows imported cleanly.
                 </p>
               ) : (
-                <div className="max-h-72 overflow-y-auto rounded-lg border border-zinc-800">
+                <div className="max-h-72 overflow-y-auto rounded-lg border border-slate-800">
                   <table className="w-full text-left text-xs">
-                    <thead className="sticky top-0 bg-zinc-900 text-zinc-500">
+                    <thead className="sticky top-0 bg-slate-900 text-slate-500">
                       <tr>
                         <th className="px-3 py-2 font-medium">Row</th>
                         <th className="px-3 py-2 font-medium">Field</th>
                         <th className="px-3 py-2 font-medium">Message</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800">
+                    <tbody className="divide-y divide-slate-800">
                       {(detail.errors ?? []).map((err, i) => (
                         <tr key={i}>
-                          <td className="px-3 py-2 tabular-nums text-zinc-400">
+                          <td className="px-3 py-2 tabular-nums text-slate-400">
                             {err.row ?? err.line ?? i + 1}
                           </td>
-                          <td className="px-3 py-2 font-mono text-zinc-400">{err.field || '—'}</td>
+                          <td className="px-3 py-2 font-mono text-slate-400">{err.field || '—'}</td>
                           <td className="px-3 py-2 text-red-300">
                             {err.message || err.error || JSON.stringify(err)}
                           </td>

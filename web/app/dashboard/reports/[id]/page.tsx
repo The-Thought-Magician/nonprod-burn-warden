@@ -148,7 +148,7 @@ export default function ReportDetailPage() {
   if (error || !report) {
     return (
       <div className="space-y-6">
-        <Link href="/dashboard/reports" className="text-sm text-zinc-500 hover:text-yellow-300">
+        <Link href="/dashboard/reports" className="text-sm text-slate-500 hover:text-emerald-300">
           ← Back to reports
         </Link>
         <EmptyState
@@ -170,15 +170,15 @@ export default function ReportDetailPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3">
-        <Link href="/dashboard/reports" className="text-sm text-zinc-500 hover:text-yellow-300">
+        <Link href="/dashboard/reports" className="text-sm text-slate-500 hover:text-emerald-300">
           ← Back to reports
         </Link>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">
+            <h1 className="text-2xl font-bold text-slate-100">
               {report.title || `Recovery Report — ${report.period}`}
             </h1>
-            <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-zinc-500">
+            <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-500">
               <Badge tone="warning">{report.period || '—'}</Badge>
               <span>Generated {fmtDateTime(report.created_at)}</span>
             </p>
@@ -201,9 +201,9 @@ export default function ReportDetailPage() {
       </div>
 
       {shareUrl && (
-        <div className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-4 py-3">
-          <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Public read-only link</div>
-          <code className="mt-1 block break-all text-xs text-yellow-300">{shareUrl}</code>
+        <div className="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3">
+          <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Public read-only link</div>
+          <code className="mt-1 block break-all text-xs text-emerald-300">{shareUrl}</code>
         </div>
       )}
 
@@ -228,20 +228,20 @@ export default function ReportDetailPage() {
       {/* Recovery progress bar */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-zinc-200">Recovery Progress</h2>
+          <h2 className="text-sm font-semibold text-slate-200">Recovery Progress</h2>
         </CardHeader>
         <CardBody className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-zinc-500">
+          <div className="flex items-center justify-between text-xs text-slate-500">
             <span>{money(report.recovered_cents)} recovered</span>
             <span>{money(report.recoverable_cents)} recoverable</span>
           </div>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-zinc-800">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-yellow-500 to-emerald-400 transition-all"
+              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all"
               style={{ width: `${Math.min(100, recoveredPct)}%` }}
             />
           </div>
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-slate-500">
             {recoveredPct}% of identified recoverable spend has been booked as recovered.
           </p>
         </CardBody>
@@ -251,14 +251,14 @@ export default function ReportDetailPage() {
       {(summary.bullets.length > 0 || summary.facts.length > 0) && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Executive Summary</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Executive Summary</h2>
           </CardHeader>
           <CardBody className="space-y-4">
             {summary.bullets.length > 0 && (
               <ul className="space-y-2">
                 {summary.bullets.map((b, i) => (
-                  <li key={i} className="flex gap-2 text-sm text-zinc-300">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-400" />
+                  <li key={i} className="flex gap-2 text-sm text-slate-300">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
                     <span>{b}</span>
                   </li>
                 ))}
@@ -267,9 +267,9 @@ export default function ReportDetailPage() {
             {summary.facts.length > 0 && (
               <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {summary.facts.map(([k, v]) => (
-                  <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-4 py-3">
-                    <dt className="text-xs uppercase tracking-wide text-zinc-500">{k}</dt>
-                    <dd className="mt-1 text-sm text-zinc-200">{v}</dd>
+                  <div key={k} className="rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3">
+                    <dt className="text-xs uppercase tracking-wide text-slate-500">{k}</dt>
+                    <dd className="mt-1 text-sm text-slate-200">{v}</dd>
                   </div>
                 ))}
               </dl>
@@ -281,7 +281,7 @@ export default function ReportDetailPage() {
       {/* Line items */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-zinc-200">Line Items by Environment / Team</h2>
+          <h2 className="text-sm font-semibold text-slate-200">Line Items by Environment / Team</h2>
         </CardHeader>
         <CardBody className="p-0">
           {lineItems.length === 0 ? (
@@ -307,14 +307,14 @@ export default function ReportDetailPage() {
                   .sort((a, b) => (b.recoverable_cents ?? 0) - (a.recoverable_cents ?? 0))
                   .map((li) => (
                     <TR key={li.id}>
-                      <TD className="font-medium text-zinc-100">{li.label || '—'}</TD>
+                      <TD className="font-medium text-slate-100">{li.label || '—'}</TD>
                       <TD className="text-right tabular-nums">{moneyPrecise(li.spend_cents)}</TD>
                       <TD className="text-right tabular-nums text-red-300">{moneyPrecise(li.waste_cents)}</TD>
-                      <TD className="text-right tabular-nums text-yellow-300">{moneyPrecise(li.recoverable_cents)}</TD>
+                      <TD className="text-right tabular-nums text-emerald-300">{moneyPrecise(li.recoverable_cents)}</TD>
                       <TD>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                           <div
-                            className="h-full rounded-full bg-yellow-400/80"
+                            className="h-full rounded-full bg-emerald-400/80"
                             style={{
                               width: `${
                                 maxRecoverable ? Math.round(((li.recoverable_cents ?? 0) / maxRecoverable) * 100) : 0

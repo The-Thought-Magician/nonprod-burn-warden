@@ -192,8 +192,8 @@ export default function ActivityPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Activity Log</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Activity Log</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Audit trail of every change across this workspace: classifications, detections, budgets, reports and more.
           </p>
         </div>
@@ -216,17 +216,17 @@ export default function ActivityPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center gap-3">
-          <h3 className="mr-auto text-sm font-semibold text-zinc-200">Feed</h3>
+          <h3 className="mr-auto text-sm font-semibold text-slate-200">Feed</h3>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search events…"
-            className="w-48 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
           />
           <select
             value={entityFilter}
             onChange={(e) => setEntityFilter(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
           >
             <option value="">All entities</option>
             {entityTypes.map((t) => (
@@ -238,7 +238,7 @@ export default function ActivityPage() {
           <select
             value={actorFilter}
             onChange={(e) => setActorFilter(e.target.value)}
-            className="max-w-[12rem] rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+            className="max-w-[12rem] rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
           >
             <option value="">All actors</option>
             {actors.map((a) => (
@@ -268,35 +268,35 @@ export default function ActivityPage() {
             <div className="flex flex-col">
               {grouped.map(([day, items]) => (
                 <div key={day}>
-                  <div className="sticky top-0 z-10 border-b border-zinc-800 bg-zinc-900/95 px-5 py-2 text-xs font-medium uppercase tracking-wide text-zinc-500 backdrop-blur">
+                  <div className="sticky top-0 z-10 border-b border-slate-800 bg-slate-900/95 px-5 py-2 text-xs font-medium uppercase tracking-wide text-slate-500 backdrop-blur">
                     {day}
                   </div>
-                  <ul className="divide-y divide-zinc-800">
+                  <ul className="divide-y divide-slate-800">
                     {items.map((e) => (
                       <li key={e.id}>
                         <button
                           onClick={() => setDetail(e)}
-                          className="flex w-full items-start gap-3 px-5 py-3 text-left transition-colors hover:bg-zinc-900/60"
+                          className="flex w-full items-start gap-3 px-5 py-3 text-left transition-colors hover:bg-slate-900/60"
                         >
                           <span className="mt-0.5 text-lg leading-none">{entityIcon(e.entity_type)}</span>
                           <div className="min-w-0 flex-1">
                             <div className="flex flex-wrap items-center gap-2">
                               <Badge tone={actionTone(e.action)}>{e.action || 'event'}</Badge>
                               {e.entity_type && (
-                                <span className="text-sm font-medium text-zinc-200">{e.entity_type}</span>
+                                <span className="text-sm font-medium text-slate-200">{e.entity_type}</span>
                               )}
                               {e.entity_id && (
-                                <span className="truncate font-mono text-xs text-zinc-600">{e.entity_id}</span>
+                                <span className="truncate font-mono text-xs text-slate-600">{e.entity_id}</span>
                               )}
                             </div>
-                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
+                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
                               {e.actor_id && <span>by {e.actor_id}</span>}
                               {e.detail && Object.keys(e.detail).length > 0 && (
-                                <span className="text-zinc-600">· {Object.keys(e.detail).length} field(s)</span>
+                                <span className="text-slate-600">· {Object.keys(e.detail).length} field(s)</span>
                               )}
                             </div>
                           </div>
-                          <span className="shrink-0 whitespace-nowrap text-xs tabular-nums text-zinc-600">
+                          <span className="shrink-0 whitespace-nowrap text-xs tabular-nums text-slate-600">
                             {relativeTime(e.created_at)}
                           </span>
                         </button>
@@ -324,21 +324,21 @@ export default function ActivityPage() {
           <div className="flex flex-col gap-3 text-sm">
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone={actionTone(detail.action)}>{detail.action || 'event'}</Badge>
-              {detail.entity_type && <span className="font-medium text-zinc-200">{detail.entity_type}</span>}
+              {detail.entity_type && <span className="font-medium text-slate-200">{detail.entity_type}</span>}
             </div>
             <dl className="grid grid-cols-[7rem_1fr] gap-x-3 gap-y-2 text-xs">
-              <dt className="text-zinc-500">Entity ID</dt>
-              <dd className="break-all font-mono text-zinc-300">{detail.entity_id || '—'}</dd>
-              <dt className="text-zinc-500">Actor</dt>
-              <dd className="break-all text-zinc-300">{detail.actor_id || '—'}</dd>
-              <dt className="text-zinc-500">When</dt>
-              <dd className="text-zinc-300">
+              <dt className="text-slate-500">Entity ID</dt>
+              <dd className="break-all font-mono text-slate-300">{detail.entity_id || '—'}</dd>
+              <dt className="text-slate-500">Actor</dt>
+              <dd className="break-all text-slate-300">{detail.actor_id || '—'}</dd>
+              <dt className="text-slate-500">When</dt>
+              <dd className="text-slate-300">
                 {detail.created_at ? new Date(detail.created_at).toLocaleString() : '—'}
               </dd>
             </dl>
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">Detail</div>
-              <pre className="max-h-64 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs text-zinc-300">
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Detail</div>
+              <pre className="max-h-64 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-300">
                 {detail.detail && Object.keys(detail.detail).length > 0
                   ? JSON.stringify(detail.detail, null, 2)
                   : 'No additional detail.'}

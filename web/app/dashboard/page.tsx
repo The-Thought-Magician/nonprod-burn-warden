@@ -65,7 +65,7 @@ function envTone(kind: string): 'warning' | 'info' | 'default' | 'success' {
 
 function TrendChart({ data }: { data: TrendPoint[] }) {
   if (data.length === 0) {
-    return <p className="px-5 py-10 text-center text-sm text-zinc-500">No trend data yet.</p>
+    return <p className="px-5 py-10 text-center text-sm text-slate-500">No trend data yet.</p>
   }
   const W = 720
   const H = 220
@@ -95,15 +95,15 @@ function TrendChart({ data }: { data: TrendPoint[] }) {
             x2={W - pad.right}
             y1={pad.top + innerH - g * innerH}
             y2={pad.top + innerH - g * innerH}
-            stroke="#27272a"
+            stroke="#1e293b"
             strokeWidth={1}
           />
         ))}
-        <path d={areaPath} fill="rgba(250,204,21,0.10)" />
-        <path d={linePath('nonprod_spend_cents')} fill="none" stroke="#52525b" strokeWidth={2} strokeDasharray="4 3" />
-        <path d={linePath('waste_cents')} fill="none" stroke="#facc15" strokeWidth={2.5} />
+        <path d={areaPath} fill="rgba(52,211,153,0.10)" />
+        <path d={linePath('nonprod_spend_cents')} fill="none" stroke="#64748b" strokeWidth={2} strokeDasharray="4 3" />
+        <path d={linePath('waste_cents')} fill="none" stroke="#34d399" strokeWidth={2.5} />
         {data.map((d, i) => (
-          <circle key={i} cx={x(i)} cy={y(d.waste_cents)} r={3} fill="#facc15" />
+          <circle key={i} cx={x(i)} cy={y(d.waste_cents)} r={3} fill="#34d399" />
         ))}
         {data.map((d, i) => (
           <text
@@ -111,19 +111,19 @@ function TrendChart({ data }: { data: TrendPoint[] }) {
             x={x(i)}
             y={H - 8}
             textAnchor="middle"
-            className="fill-zinc-600"
+            className="fill-slate-600"
             fontSize={10}
           >
             {d.period}
           </text>
         ))}
       </svg>
-      <div className="mt-2 flex items-center gap-4 px-1 text-xs text-zinc-500">
+      <div className="mt-2 flex items-center gap-4 px-1 text-xs text-slate-500">
         <span className="flex items-center gap-1.5">
-          <span className="inline-block h-0.5 w-4 bg-yellow-400" /> Idle waste
+          <span className="inline-block h-0.5 w-4 bg-emerald-400" /> Idle waste
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-zinc-600" /> Non-prod spend
+          <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-slate-600" /> Non-prod spend
         </span>
       </div>
     </div>
@@ -244,8 +244,8 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Overview</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Overview</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Non-production cloud spend, idle waste, and recoverable potential.
           </p>
         </div>
@@ -254,7 +254,7 @@ export default function DashboardPage() {
             <select
               value={workspaceId}
               onChange={(e) => onSelectWorkspace(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -320,7 +320,7 @@ export default function DashboardPage() {
             {/* Trend chart */}
             <Card className="lg:col-span-2">
               <CardHeader>
-                <h2 className="text-sm font-semibold text-zinc-200">Waste over time</h2>
+                <h2 className="text-sm font-semibold text-slate-200">Waste over time</h2>
               </CardHeader>
               <CardBody>
                 <TrendChart data={trends} />
@@ -330,33 +330,33 @@ export default function DashboardPage() {
             {/* Leaderboard */}
             <Card>
               <CardHeader className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-zinc-200">Worst offenders</h2>
-                <Link href="/dashboard/environments" className="text-xs text-yellow-400 hover:text-yellow-300">
+                <h2 className="text-sm font-semibold text-slate-200">Worst offenders</h2>
+                <Link href="/dashboard/environments" className="text-xs text-emerald-400 hover:text-emerald-300">
                   View all
                 </Link>
               </CardHeader>
               <CardBody>
                 {leaderboard.length === 0 ? (
-                  <p className="py-6 text-center text-sm text-zinc-500">No waste recorded.</p>
+                  <p className="py-6 text-center text-sm text-slate-500">No waste recorded.</p>
                 ) : (
                   <ul className="space-y-3">
                     {leaderboard.slice(0, 8).map((row, i) => (
                       <li key={row.environment_id}>
                         <Link
                           href={`/dashboard/environments/${row.environment_id}`}
-                          className="block rounded-lg p-2 transition-colors hover:bg-zinc-800/50"
+                          className="block rounded-lg p-2 transition-colors hover:bg-slate-800/50"
                         >
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex min-w-0 items-center gap-2">
-                              <span className="w-4 shrink-0 text-xs tabular-nums text-zinc-600">{i + 1}</span>
-                              <span className="truncate text-sm font-medium text-zinc-200">{row.name}</span>
+                              <span className="w-4 shrink-0 text-xs tabular-nums text-slate-600">{i + 1}</span>
+                              <span className="truncate text-sm font-medium text-slate-200">{row.name}</span>
                               <Badge tone={envTone(row.env_kind)}>{row.env_kind}</Badge>
                             </div>
                             <span className="shrink-0 text-sm font-semibold tabular-nums text-red-300">
                               {fmtMoney(row.wasted_cents)}
                             </span>
                           </div>
-                          <div className="mt-1.5 ml-6 h-1.5 overflow-hidden rounded-full bg-zinc-800">
+                          <div className="mt-1.5 ml-6 h-1.5 overflow-hidden rounded-full bg-slate-800">
                             <div
                               className="h-full rounded-full bg-red-400/70"
                               style={{ width: `${Math.round(((row.wasted_cents ?? 0) / maxLeader) * 100)}%` }}

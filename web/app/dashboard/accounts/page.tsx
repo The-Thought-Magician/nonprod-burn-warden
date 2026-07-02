@@ -304,8 +304,8 @@ export default function CloudAccountsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Cloud Accounts</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Cloud Accounts</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Connect AWS, GCP and Azure accounts. Each account rolls up its resource count, monthly spend and per
             environment breakdown.
           </p>
@@ -337,12 +337,12 @@ export default function CloudAccountsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold text-zinc-200">All accounts</h3>
+          <h3 className="text-sm font-semibold text-slate-200">All accounts</h3>
           <div className="flex flex-wrap items-center gap-2">
             <select
               value={providerFilter}
               onChange={(e) => setProviderFilter(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               <option value="all">All providers</option>
               {providers.map((p) => (
@@ -355,7 +355,7 @@ export default function CloudAccountsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search accounts…"
-              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </div>
         </CardHeader>
@@ -392,12 +392,12 @@ export default function CloudAccountsPage() {
                     <TD>
                       <button
                         onClick={() => openDetail(a)}
-                        className="text-left font-medium text-zinc-100 hover:text-yellow-300 hover:underline"
+                        className="text-left font-medium text-slate-100 hover:text-emerald-300 hover:underline"
                       >
                         {a.nickname || a.account_ref}
                       </button>
                       {a.nickname && (
-                        <div className="font-mono text-xs text-zinc-600">{a.account_ref}</div>
+                        <div className="font-mono text-xs text-slate-600">{a.account_ref}</div>
                       )}
                     </TD>
                     <TD>
@@ -405,11 +405,11 @@ export default function CloudAccountsPage() {
                         {(a.provider || 'other').toUpperCase()}
                       </Badge>
                     </TD>
-                    <TD>{a.default_region || <span className="text-zinc-600">—</span>}</TD>
+                    <TD>{a.default_region || <span className="text-slate-600">—</span>}</TD>
                     <TD className="text-right tabular-nums">{(a.resource_count ?? 0).toLocaleString()}</TD>
                     <TD>
                       <div className="mb-1 flex items-center justify-between text-xs">
-                        <span className="tabular-nums font-medium text-yellow-300">
+                        <span className="tabular-nums font-medium text-emerald-300">
                           {dollars(a.monthly_cost_cents)}
                         </span>
                         {totalSpend > 0 && (
@@ -418,9 +418,9 @@ export default function CloudAccountsPage() {
                           </Badge>
                         )}
                       </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-yellow-400"
+                          className="h-full rounded-full bg-emerald-400"
                           style={{ width: `${Math.max(2, ((a.monthly_cost_cents ?? 0) / maxSpend) * 100)}%` }}
                         />
                       </div>
@@ -468,12 +468,12 @@ export default function CloudAccountsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Provider</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Provider</span>
             <select
               value={form.provider}
               onChange={(e) => setForm((f) => ({ ...f, provider: e.target.value }))}
               disabled={!!editing}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none disabled:opacity-50"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none disabled:opacity-50"
             >
               {PROVIDERS.map((p) => (
                 <option key={p} value={p}>
@@ -481,10 +481,10 @@ export default function CloudAccountsPage() {
                 </option>
               ))}
             </select>
-            {editing && <span className="text-xs text-zinc-600">Provider cannot be changed after connecting.</span>}
+            {editing && <span className="text-xs text-slate-600">Provider cannot be changed after connecting.</span>}
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
               Account reference
             </span>
             <input
@@ -493,30 +493,30 @@ export default function CloudAccountsPage() {
               placeholder="e.g. 123456789012 or my-gcp-project"
               autoFocus
               disabled={!!editing}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none disabled:opacity-50"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none disabled:opacity-50"
             />
-            <span className="text-xs text-zinc-600">
+            <span className="text-xs text-slate-600">
               {editing
                 ? 'The account id / project id is fixed once connected.'
                 : 'AWS account id, GCP project id, or Azure subscription id.'}
             </span>
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Nickname</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Nickname</span>
             <input
               value={form.nickname}
               onChange={(e) => setForm((f) => ({ ...f, nickname: e.target.value }))}
               placeholder="e.g. Dev Sandbox"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Default region</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Default region</span>
             <input
               value={form.default_region}
               onChange={(e) => setForm((f) => ({ ...f, default_region: e.target.value }))}
               placeholder="e.g. us-east-1"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
         </div>
@@ -544,7 +544,7 @@ export default function CloudAccountsPage() {
               <Badge tone={PROVIDER_TONE[detail.provider] ?? 'default'}>
                 {(detail.provider || 'other').toUpperCase()}
               </Badge>
-              <span className="font-mono text-zinc-400">{detail.account_ref}</span>
+              <span className="font-mono text-slate-400">{detail.account_ref}</span>
               {detail.default_region && <Badge tone="default">{detail.default_region}</Badge>}
             </div>
             <div className="grid grid-cols-2 gap-3">
@@ -553,7 +553,7 @@ export default function CloudAccountsPage() {
             </div>
 
             <div>
-              <h4 className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <h4 className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
                 Environment breakdown
               </h4>
               {detailLoading ? (
@@ -561,7 +561,7 @@ export default function CloudAccountsPage() {
                   <Spinner label="Loading breakdown…" />
                 </div>
               ) : (detail.env_breakdown ?? []).length === 0 ? (
-                <p className="rounded-lg border border-dashed border-zinc-800 bg-zinc-900/40 px-4 py-6 text-center text-sm text-zinc-500">
+                <p className="rounded-lg border border-dashed border-slate-800 bg-slate-900/40 px-4 py-6 text-center text-sm text-slate-500">
                   No environment-attributed spend yet for this account.
                 </p>
               ) : (
@@ -571,18 +571,18 @@ export default function CloudAccountsPage() {
                       <div className="mb-1 flex items-center justify-between text-sm">
                         <span className="flex items-center gap-2">
                           <Badge tone={envTone(row.env_kind)}>{row.env_kind || 'unknown'}</Badge>
-                          <span className="text-zinc-200">{row.name || 'Unassigned'}</span>
-                          <span className="text-xs text-zinc-600">
+                          <span className="text-slate-200">{row.name || 'Unassigned'}</span>
+                          <span className="text-xs text-slate-600">
                             {(row.resource_count ?? 0).toLocaleString()} res
                           </span>
                         </span>
-                        <span className="tabular-nums font-medium text-yellow-300">
+                        <span className="tabular-nums font-medium text-emerald-300">
                           {dollars(row.monthly_cost_cents)}
                         </span>
                       </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-yellow-400"
+                          className="h-full rounded-full bg-emerald-400"
                           style={{
                             width: `${Math.max(2, ((row.monthly_cost_cents ?? 0) / detailEnvMax) * 100)}%`,
                           }}

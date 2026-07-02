@@ -204,8 +204,8 @@ export default function TeamsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Teams</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Teams</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Organize ownership of cloud spend. Each team rolls up the monthly cost of its assigned resources.
           </p>
         </div>
@@ -240,12 +240,12 @@ export default function TeamsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold text-zinc-200">All teams</h3>
+          <h3 className="text-sm font-semibold text-slate-200">All teams</h3>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search teams…"
-            className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+            className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
           />
         </CardHeader>
         <CardBody className="p-0">
@@ -277,9 +277,9 @@ export default function TeamsPage() {
                 {filtered.map((t) => (
                   <TR key={t.id}>
                     <TD>
-                      <div className="font-medium text-zinc-100">{t.name}</div>
+                      <div className="font-medium text-slate-100">{t.name}</div>
                       {t.created_at && (
-                        <div className="text-xs text-zinc-600">
+                        <div className="text-xs text-slate-600">
                           since {new Date(t.created_at).toLocaleDateString()}
                         </div>
                       )}
@@ -290,12 +290,12 @@ export default function TeamsPage() {
                           {t.lead_email}
                         </a>
                       ) : (
-                        <span className="text-zinc-600">unassigned</span>
+                        <span className="text-slate-600">unassigned</span>
                       )}
                     </TD>
                     <TD>
                       <div className="mb-1 flex items-center justify-between text-xs">
-                        <span className="tabular-nums font-medium text-yellow-300">
+                        <span className="tabular-nums font-medium text-emerald-300">
                           {dollars(t.monthly_spend_cents)}
                         </span>
                         {totalSpend > 0 && (
@@ -304,9 +304,9 @@ export default function TeamsPage() {
                           </Badge>
                         )}
                       </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-yellow-400"
+                          className="h-full rounded-full bg-emerald-400"
                           style={{ width: `${Math.max(2, ((t.monthly_spend_cents ?? 0) / maxSpend) * 100)}%` }}
                         />
                       </div>
@@ -355,25 +355,25 @@ export default function TeamsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Team name</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Team name</span>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Platform Engineering"
               autoFocus
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Lead email</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Lead email</span>
             <input
               type="email"
               value={form.lead_email}
               onChange={(e) => setForm((f) => ({ ...f, lead_email: e.target.value }))}
               placeholder="lead@company.com"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
-            <span className="text-xs text-zinc-600">Optional. Used for budget alerts and showback statements.</span>
+            <span className="text-xs text-slate-600">Optional. Used for budget alerts and showback statements.</span>
           </label>
         </div>
       </Modal>

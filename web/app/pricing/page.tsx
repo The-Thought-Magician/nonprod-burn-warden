@@ -36,18 +36,18 @@ export default function Pricing() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100">
-      <nav className="flex items-center justify-between border-b border-zinc-800 px-6 py-4">
-        <Link href="/" className="flex items-center gap-2 text-xl font-black text-yellow-400">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
+      <nav className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+        <Link href="/" className="flex items-center gap-2 text-xl font-black text-emerald-400">
           <span>🔥</span> NonprodBurnWarden
         </Link>
         <div className="flex items-center gap-4 text-sm">
-          <Link href="/auth/sign-in" className="text-zinc-300 hover:text-zinc-100">
+          <Link href="/auth/sign-in" className="text-slate-300 hover:text-slate-100">
             Sign In
           </Link>
           <Link
             href="/auth/sign-up"
-            className="rounded-lg bg-yellow-400 px-4 py-2 font-medium text-zinc-950 hover:bg-yellow-300"
+            className="rounded-lg bg-emerald-400 px-4 py-2 font-medium text-slate-950 hover:bg-emerald-300"
           >
             Get Started
           </Link>
@@ -56,28 +56,28 @@ export default function Pricing() {
 
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
         <h1 className="text-4xl font-black tracking-tight">Simple, honest pricing</h1>
-        <p className="mt-4 text-lg text-zinc-400">
+        <p className="mt-4 text-lg text-slate-400">
           Every feature is free for signed-in users. No seat limits, no usage metering, no credit card.
         </p>
       </section>
 
       <section className="mx-auto max-w-2xl px-6 pb-24">
-        <div className="rounded-2xl border border-yellow-500/40 bg-zinc-900 p-8">
+        <div className="rounded-2xl border border-emerald-500/40 bg-slate-900 p-8">
           <div className="flex items-baseline justify-between">
             <div>
-              <h2 className="text-xl font-bold text-yellow-300">Free</h2>
-              <p className="mt-1 text-sm text-zinc-400">Everything, for everyone.</p>
+              <h2 className="text-xl font-bold text-emerald-300">Free</h2>
+              <p className="mt-1 text-sm text-slate-400">Everything, for everyone.</p>
             </div>
             <div className="text-right">
               <span className="text-4xl font-black">$0</span>
-              <span className="text-sm text-zinc-500"> / month</span>
+              <span className="text-sm text-slate-500"> / month</span>
             </div>
           </div>
 
           <ul className="mt-8 space-y-3">
             {FREE_FEATURES.map((f) => (
-              <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
-                <span className="mt-0.5 text-yellow-400">✓</span>
+              <li key={f} className="flex items-start gap-3 text-sm text-slate-300">
+                <span className="mt-0.5 text-emerald-400">✓</span>
                 <span>{f}</span>
               </li>
             ))}
@@ -85,13 +85,13 @@ export default function Pricing() {
 
           <Link
             href="/auth/sign-up"
-            className="mt-8 block w-full rounded-lg bg-yellow-400 py-3 text-center font-semibold text-zinc-950 hover:bg-yellow-300"
+            className="mt-8 block w-full rounded-lg bg-emerald-400 py-3 text-center font-semibold text-slate-950 hover:bg-emerald-300"
           >
             Start for free
           </Link>
         </div>
 
-        <p className="mt-6 text-center text-xs text-zinc-600">
+        <p className="mt-6 text-center text-xs text-slate-600">
           {stripeEnabled === null
             ? 'Checking billing status...'
             : stripeEnabled
@@ -100,7 +100,7 @@ export default function Pricing() {
         </p>
       </section>
 
-      <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-600">
+      <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-600">
         <p>NonprodBurnWarden — per-environment idle-spend ledger and schedule-ROI model.</p>
       </footer>
     </main>

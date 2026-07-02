@@ -2,23 +2,23 @@ import type { ReactNode, ThHTMLAttributes, TdHTMLAttributes, HTMLAttributes } fr
 
 export function Table({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-zinc-800">
+    <div className="overflow-x-auto rounded-xl border border-slate-800">
       <table className={`w-full text-left text-sm ${className}`}>{children}</table>
     </div>
   )
 }
 
 export function THead({ children }: { children: ReactNode }) {
-  return <thead className="bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-500">{children}</thead>
+  return <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-500">{children}</thead>
 }
 
 export function TBody({ children }: { children: ReactNode }) {
-  return <tbody className="divide-y divide-zinc-800">{children}</tbody>
+  return <tbody className="divide-y divide-slate-800">{children}</tbody>
 }
 
 export function TR({ children, className = '', ...props }: HTMLAttributes<HTMLTableRowElement>) {
   return (
-    <tr className={`hover:bg-zinc-900/50 ${className}`} {...props}>
+    <tr className={`hover:bg-slate-900/50 ${className}`} {...props}>
       {children}
     </tr>
   )
@@ -34,7 +34,7 @@ export function TH({ children, className = '', ...props }: ThHTMLAttributes<HTML
 
 export function TD({ children, className = '', ...props }: TdHTMLAttributes<HTMLTableCellElement>) {
   return (
-    <td className={`px-4 py-3 text-zinc-300 ${className}`} {...props}>
+    <td className={`px-4 py-3 text-slate-300 ${className}`} {...props}>
       {children}
     </td>
   )

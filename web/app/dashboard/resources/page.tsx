@@ -296,8 +296,8 @@ export default function ResourcesPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Resource Inventory</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Resource Inventory</h1>
+          <p className="mt-1 text-sm text-slate-500">
             {visible.length} resource{visible.length === 1 ? '' : 's'} · {dollars(totalMonthly)}/mo
           </p>
         </div>
@@ -320,24 +320,24 @@ export default function ResourcesPage() {
         <CardBody>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
                 Search
               </label>
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="name, id, service, region..."
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
                 Env kind
               </label>
               <select
                 value={filterEnvKind}
                 onChange={(e) => setFilterEnvKind(e.target.value)}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">All kinds</option>
                 {ENV_KINDS.map((k) => (
@@ -348,13 +348,13 @@ export default function ResourcesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
                 Environment
               </label>
               <select
                 value={filterEnvId}
                 onChange={(e) => setFilterEnvId(e.target.value)}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">All environments</option>
                 {environments.map((env) => (
@@ -365,13 +365,13 @@ export default function ResourcesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+              <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-slate-500">
                 Team
               </label>
               <select
                 value={filterTeamId}
                 onChange={(e) => setFilterTeamId(e.target.value)}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">All teams</option>
                 {teams.map((t) => (
@@ -391,7 +391,7 @@ export default function ResourcesPage() {
                   setFilterEnvId('')
                   setFilterTeamId('')
                 }}
-                className="text-xs text-yellow-400 hover:text-yellow-300"
+                className="text-xs text-emerald-400 hover:text-emerald-300"
               >
                 Clear filters
               </button>
@@ -421,7 +421,7 @@ export default function ResourcesPage() {
                   checked={allSelected}
                   onChange={toggleSelectAll}
                   aria-label="Select all"
-                  className="h-4 w-4 accent-yellow-400"
+                  className="h-4 w-4 accent-emerald-400"
                 />
               </TH>
               <TH>Resource</TH>
@@ -443,17 +443,17 @@ export default function ResourcesPage() {
                     checked={selected.has(r.id)}
                     onChange={() => toggleSelect(r.id)}
                     aria-label={`Select ${r.name}`}
-                    className="h-4 w-4 accent-yellow-400"
+                    className="h-4 w-4 accent-emerald-400"
                   />
                 </TD>
                 <TD>
                   <Link
                     href={`/dashboard/resources/${r.id}`}
-                    className="font-medium text-zinc-100 hover:text-yellow-300"
+                    className="font-medium text-slate-100 hover:text-emerald-300"
                   >
                     {r.name ?? r.external_id}
                   </Link>
-                  <div className="text-xs text-zinc-500">
+                  <div className="text-xs text-slate-500">
                     {[r.service, r.resource_type, r.region].filter(Boolean).join(' · ') || r.external_id}
                   </div>
                 </TD>
@@ -462,7 +462,7 @@ export default function ResourcesPage() {
                   {r.env_kind ? (
                     <Badge tone={envTone(r.env_kind)}>{r.env_kind}</Badge>
                   ) : (
-                    <span className="text-zinc-600">unclassified</span>
+                    <span className="text-slate-600">unclassified</span>
                   )}
                 </TD>
                 <TD>{envName(r.environment_id)}</TD>
@@ -470,27 +470,27 @@ export default function ResourcesPage() {
                 <TD className="text-right tabular-nums">{dollars(r.monthly_cost_cents)}</TD>
                 <TD>
                   {r.classification_source ? (
-                    <span className="text-xs text-zinc-400">
+                    <span className="text-xs text-slate-400">
                       {r.classification_source}
                       {r.classification_confidence != null && r.classification_source !== 'manual'
                         ? ` ${Math.round(Number(r.classification_confidence) * 100)}%`
                         : ''}
                     </span>
                   ) : (
-                    <span className="text-xs text-zinc-600">—</span>
+                    <span className="text-xs text-slate-600">—</span>
                   )}
                 </TD>
                 <TD className="text-right">
                   <div className="flex justify-end gap-1">
                     <button
                       onClick={() => openClassifySingle(r)}
-                      className="rounded-md px-2 py-1 text-xs text-zinc-300 hover:bg-zinc-800 hover:text-yellow-300"
+                      className="rounded-md px-2 py-1 text-xs text-slate-300 hover:bg-slate-800 hover:text-emerald-300"
                     >
                       Classify
                     </button>
                     <button
                       onClick={() => handleDelete(r)}
-                      className="rounded-md px-2 py-1 text-xs text-zinc-400 hover:bg-red-900/40 hover:text-red-300"
+                      className="rounded-md px-2 py-1 text-xs text-slate-400 hover:bg-red-900/40 hover:text-red-300"
                     >
                       Delete
                     </button>
@@ -521,29 +521,29 @@ export default function ResourcesPage() {
         <form id="create-resource-form" onSubmit={handleCreate} className="space-y-3">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">External ID *</label>
+              <label className="mb-1 block text-xs text-slate-500">External ID *</label>
               <input
                 required
                 value={createForm.external_id}
                 onChange={(e) => setCreateForm({ ...createForm, external_id: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Name *</label>
+              <label className="mb-1 block text-xs text-slate-500">Name *</label>
               <input
                 required
                 value={createForm.name}
                 onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Provider</label>
+              <label className="mb-1 block text-xs text-slate-500">Provider</label>
               <select
                 value={createForm.provider}
                 onChange={(e) => setCreateForm({ ...createForm, provider: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 {PROVIDERS.map((p) => (
                   <option key={p} value={p}>
@@ -553,35 +553,35 @@ export default function ResourcesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Service</label>
+              <label className="mb-1 block text-xs text-slate-500">Service</label>
               <input
                 value={createForm.service}
                 onChange={(e) => setCreateForm({ ...createForm, service: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Resource type</label>
+              <label className="mb-1 block text-xs text-slate-500">Resource type</label>
               <input
                 value={createForm.resource_type}
                 onChange={(e) => setCreateForm({ ...createForm, resource_type: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Region</label>
+              <label className="mb-1 block text-xs text-slate-500">Region</label>
               <input
                 value={createForm.region}
                 onChange={(e) => setCreateForm({ ...createForm, region: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Env kind</label>
+              <label className="mb-1 block text-xs text-slate-500">Env kind</label>
               <select
                 value={createForm.env_kind}
                 onChange={(e) => setCreateForm({ ...createForm, env_kind: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">Unclassified</option>
                 {ENV_KINDS.map((k) => (
@@ -592,22 +592,22 @@ export default function ResourcesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Monthly cost ($)</label>
+              <label className="mb-1 block text-xs text-slate-500">Monthly cost ($)</label>
               <input
                 type="number"
                 min="0"
                 step="0.01"
                 value={createForm.monthly_cost_cents}
                 onChange={(e) => setCreateForm({ ...createForm, monthly_cost_cents: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Environment</label>
+              <label className="mb-1 block text-xs text-slate-500">Environment</label>
               <select
                 value={createForm.environment_id}
                 onChange={(e) => setCreateForm({ ...createForm, environment_id: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">None</option>
                 {environments.map((env) => (
@@ -618,11 +618,11 @@ export default function ResourcesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">Team</label>
+              <label className="mb-1 block text-xs text-slate-500">Team</label>
               <select
                 value={createForm.team_id}
                 onChange={(e) => setCreateForm({ ...createForm, team_id: e.target.value })}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">None</option>
                 {teams.map((t) => (
@@ -664,16 +664,16 @@ export default function ResourcesPage() {
       >
         <form id="classify-form" onSubmit={handleClassify} className="space-y-3">
           {classifyTargets.length > 1 && (
-            <p className="text-xs text-zinc-500">
+            <p className="text-xs text-slate-500">
               Leave a field on its default to keep each resource&apos;s current value.
             </p>
           )}
           <div>
-            <label className="mb-1 block text-xs text-zinc-500">Env kind</label>
+            <label className="mb-1 block text-xs text-slate-500">Env kind</label>
             <select
               value={classifyForm.env_kind}
               onChange={(e) => setClassifyForm({ ...classifyForm, env_kind: e.target.value })}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
             >
               <option value="">{classifyTargets.length > 1 ? 'Leave unchanged' : 'Unclassified'}</option>
               {ENV_KINDS.map((k) => (
@@ -684,11 +684,11 @@ export default function ResourcesPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs text-zinc-500">Environment</label>
+            <label className="mb-1 block text-xs text-slate-500">Environment</label>
             <select
               value={classifyForm.environment_id}
               onChange={(e) => setClassifyForm({ ...classifyForm, environment_id: e.target.value })}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
             >
               <option value="">{classifyTargets.length > 1 ? 'Leave unchanged' : 'None'}</option>
               <option value="__clear__">— clear —</option>
@@ -700,11 +700,11 @@ export default function ResourcesPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs text-zinc-500">Team</label>
+            <label className="mb-1 block text-xs text-slate-500">Team</label>
             <select
               value={classifyForm.team_id}
               onChange={(e) => setClassifyForm({ ...classifyForm, team_id: e.target.value })}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
             >
               <option value="">{classifyTargets.length > 1 ? 'Leave unchanged' : 'None'}</option>
               <option value="__clear__">— clear —</option>

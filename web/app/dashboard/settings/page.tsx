@@ -353,29 +353,29 @@ export default function SettingsPage() {
               </div>
             )}
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Name</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Name</span>
               <input
                 value={createForm.name}
                 onChange={(e) => setCreateForm((f) => ({ ...f, name: e.target.value }))}
                 autoFocus
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Slug (optional)</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Slug (optional)</span>
               <input
                 value={createForm.slug}
                 onChange={(e) => setCreateForm((f) => ({ ...f, slug: e.target.value }))}
                 placeholder="auto-generated if blank"
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Currency</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Currency</span>
               <select
                 value={createForm.currency}
                 onChange={(e) => setCreateForm((f) => ({ ...f, currency: e.target.value }))}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -398,8 +398,8 @@ export default function SettingsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Settings</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-bold text-slate-100">Settings</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Manage workspace details, members, billing and demo data.
           </p>
         </div>
@@ -408,7 +408,7 @@ export default function SettingsPage() {
             <select
               value={workspaceId ?? ''}
               onChange={(e) => switchWorkspace(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -443,27 +443,27 @@ export default function SettingsPage() {
       {/* Workspace details */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-zinc-200">Workspace details</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Workspace details</h3>
           {!isOwner && <Badge tone="default">read-only · owner can edit</Badge>}
         </CardHeader>
         <CardBody>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Name</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Name</span>
               <input
                 value={wsForm.name}
                 onChange={(e) => setWsForm((f) => ({ ...f, name: e.target.value }))}
                 disabled={!isOwner}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none disabled:opacity-60"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none disabled:opacity-60"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Currency</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Currency</span>
               <select
                 value={wsForm.currency}
                 onChange={(e) => setWsForm((f) => ({ ...f, currency: e.target.value }))}
                 disabled={!isOwner}
-                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none disabled:opacity-60"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none disabled:opacity-60"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -473,19 +473,19 @@ export default function SettingsPage() {
               </select>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Slug</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Slug</span>
               <input
                 value={current?.slug ?? ''}
                 disabled
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 font-mono text-sm text-zinc-500"
+                className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 font-mono text-sm text-slate-500"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Workspace ID</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Workspace ID</span>
               <input
                 value={current?.id ?? ''}
                 disabled
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 font-mono text-sm text-zinc-500"
+                className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 font-mono text-sm text-slate-500"
               />
             </label>
           </div>
@@ -502,7 +502,7 @@ export default function SettingsPage() {
       {/* Members */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-zinc-200">Members</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Members</h3>
           {isOwner && <Button onClick={() => setMemberOpen(true)}>Add member</Button>}
         </CardHeader>
         <CardBody className="p-0">
@@ -527,7 +527,7 @@ export default function SettingsPage() {
               <TBody>
                 {members.map((m) => (
                   <TR key={m.id}>
-                    <TD className="break-all font-mono text-xs text-zinc-300">{m.user_id}</TD>
+                    <TD className="break-all font-mono text-xs text-slate-300">{m.user_id}</TD>
                     <TD>
                       <Badge tone={roleTone(m.role)}>{m.role || 'member'}</Badge>
                     </TD>
@@ -558,27 +558,27 @@ export default function SettingsPage() {
       {/* Billing */}
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Billing</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Billing</h3>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
           {!stripeEnabled && (
-            <div className="rounded-lg border border-yellow-500/40 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-300">
+            <div className="rounded-lg border border-emerald-500/40 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
               Stripe billing is not configured on this deployment. NonprodBurnWarden is fully free, every feature is
               available without a paid plan. Checkout and portal actions will return 503 until billing is enabled.
             </div>
           )}
           <div className="flex flex-wrap items-center gap-4">
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <div className="text-xs uppercase tracking-wide text-zinc-500">Current plan</div>
+            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3">
+              <div className="text-xs uppercase tracking-wide text-slate-500">Current plan</div>
               <div className="mt-1 flex items-center gap-2">
-                <span className="text-lg font-semibold text-zinc-100">{planName}</span>
+                <span className="text-lg font-semibold text-slate-100">{planName}</span>
                 <Badge tone={billing?.subscription?.status === 'active' ? 'success' : 'default'}>
                   {billing?.subscription?.status ?? 'free'}
                 </Badge>
               </div>
-              {planPrice > 0 && <div className="mt-1 text-xs text-zinc-500">{dollars(planPrice)} / month</div>}
+              {planPrice > 0 && <div className="mt-1 text-xs text-slate-500">{dollars(planPrice)} / month</div>}
               {billing?.subscription?.current_period_end && (
-                <div className="mt-1 text-xs text-zinc-600">
+                <div className="mt-1 text-xs text-slate-600">
                   Renews {new Date(billing.subscription.current_period_end).toLocaleDateString()}
                 </div>
               )}
@@ -598,10 +598,10 @@ export default function SettingsPage() {
       {/* Demo data */}
       <Card>
         <CardHeader>
-          <h3 className="text-sm font-semibold text-zinc-200">Demo data</h3>
+          <h3 className="text-sm font-semibold text-slate-200">Demo data</h3>
         </CardHeader>
         <CardBody className="flex flex-wrap items-center justify-between gap-4">
-          <p className="max-w-xl text-sm text-zinc-500">
+          <p className="max-w-xl text-sm text-slate-500">
             Reset this workspace to a fresh deterministic sample. Existing demo accounts, resources, usage, costs,
             idle windows and findings are deleted and regenerated.
           </p>
@@ -634,29 +634,29 @@ export default function SettingsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Name</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Name</span>
             <input
               value={createForm.name}
               onChange={(e) => setCreateForm((f) => ({ ...f, name: e.target.value }))}
               autoFocus
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Slug (optional)</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Slug (optional)</span>
             <input
               value={createForm.slug}
               onChange={(e) => setCreateForm((f) => ({ ...f, slug: e.target.value }))}
               placeholder="auto-generated if blank"
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Currency</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Currency</span>
             <select
               value={createForm.currency}
               onChange={(e) => setCreateForm((f) => ({ ...f, currency: e.target.value }))}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               {CURRENCIES.map((c) => (
                 <option key={c} value={c}>
@@ -691,21 +691,21 @@ export default function SettingsPage() {
             </div>
           )}
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">User ID</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">User ID</span>
             <input
               value={memberForm.user_id}
               onChange={(e) => setMemberForm((f) => ({ ...f, user_id: e.target.value }))}
               placeholder="The teammate's user ID"
               autoFocus
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Role</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Role</span>
             <select
               value={memberForm.role}
               onChange={(e) => setMemberForm((f) => ({ ...f, role: e.target.value }))}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-yellow-500 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
             >
               <option value="member">member</option>
               <option value="admin">admin</option>
